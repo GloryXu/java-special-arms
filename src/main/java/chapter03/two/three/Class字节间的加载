@@ -1,0 +1,11 @@
+查看程序加载了什么类，在Java程序运行时增加启动参数：-XX:+TraceClassLoading
+
+ClassLoader的一些知识补充
+1.常见的web容器加载不同的deploy会进行相互隔离，它使用了不同的ClassLoader 来加载不同的deploy，并非真正意义上的隔离，想跨ClassLoader
+    访问一些信息比较麻烦，用JMX可以访问
+2.在Class加载中，同名的类（package和类名一致），在同一个ClassLoader中只会被加载一次（除非被卸载或被重定义）
+3.JVM做FULL GC的时候，允许对Class执行unload操作，但是苛刻的条件是响应的ClassLoader下所有的Class都没有实例的引用，否则这个
+    ClassLoader及它下面所有的Class都释放不掉。跟踪类的卸载，可以通过添加启动参数：-XX:+TraceClassUnloading达到目的
+6.当使用Class.forName()的时候，有一个重载方法可以带上指定的ClassLoader，如果没有带上ClassLoader，则默认与“调用者当前类”
+    加载的ClassLoader一致
+7.ClassLoader是特殊的类，最初的时候由谁来加载？JVM内核来加载
