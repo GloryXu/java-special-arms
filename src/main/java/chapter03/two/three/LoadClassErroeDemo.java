@@ -10,7 +10,7 @@ abstract class A {
     abstract void test();
 }
 
-class B extends A {
+class B {
     private final static B instance = new B();
 
     public static B getInstance() {

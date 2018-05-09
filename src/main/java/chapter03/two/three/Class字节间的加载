@@ -9,3 +9,12 @@ ClassLoader的一些知识补充
 6.当使用Class.forName()的时候，有一个重载方法可以带上指定的ClassLoader，如果没有带上ClassLoader，则默认与“调用者当前类”
     加载的ClassLoader一致
 7.ClassLoader是特殊的类，最初的时候由谁来加载？JVM内核来加载
+
+
+JIT
+JIT优化会将优化后的本地代码存放在CodeCache中，这个空间默认大小为48M，可以使用参数-XX:ReservedCodeCacheSize=64m来修改大小，
+参数-XX:+Use CodeCacheFlushing可以对CodeCache进行清理。
+另外，参数-XX:CICompilerCount的设置相对较大 可以在一定程度上提升JIT编译的速度（默认为2），在高并发系统中适当设置可以有效地提升性能。
+
+
+一个ClassLoader对同一个类只能加载一次，不同的ClassLoader分别加载同一个类
