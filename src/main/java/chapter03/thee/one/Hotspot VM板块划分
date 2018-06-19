@@ -1,0 +1,25 @@
+栈空间
+通常用-Xss设定大小
+
+查看默认值方式
+1.通过-XX:+PrintFlagsFinal来获取结果
+2.-XX:+PrintCommandLineFlags，打印出真正的参数启东命令
+
+java -Xmx31g -XX:+PrintFlagsFinal|grep Oops
+
+一般Young空间都用-Xmn来设置
+
+Heap总大小使用-Xms设置它的初始值（不包括PermGen大小），使用-Xmx来设置它的上限
+一般讲这两个参数设置相同，否则容易“瞎折腾”
+当GC后剩余空间的百分比小于-XX:MinHeapFreeRatio时，JVM的堆内存开始变大（一般输出为40，代表40%）；
+反之，当GC后空闲内存大于-XX:MaxHeapFreeRatio时（一般为70，代表70%），JVM的堆内存开始变小
+
+新建对象太大，Eden区域放不下，或者设定了一个对象阈值-XX:PretenureSizeThreshold，这样对象在分配
+的时候就会直接进入Old区域
+
+-XX:ServivorRatio=8 --> Eden/Survivor的区域比重（注意是一个Survivor）
+-XX:InitialSurvivorRatio=8 --> Young/S0的比值，如Young 8M，S0和S1各1M，则Eden为6M
+这两个参数设定后就可以设定两个Survivor区域的大小，不过，两个Survivor区还会受到-XX:+UseAdaptiveSizePolicy参数的影响，
+它会动态调整这两个区域的大小。这个参数在JDK 1.6以后默认是开启的，即默认就会动态调整。
+
+-XX:MaxTenuringThreshold=15这个参数来设置。（标识设置在对象头部）
