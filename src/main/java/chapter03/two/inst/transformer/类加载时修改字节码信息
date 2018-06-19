@@ -1,0 +1,4 @@
+--jar包配置Premain-Class
+打开jar包，进入META-INF文件夹，里面有个文件叫“MANIFEST.MF”，是
+一个文本文件，在文件中增加一行
+Premain-Class: chapter03.two.inst.transformer.InstForTransformer
