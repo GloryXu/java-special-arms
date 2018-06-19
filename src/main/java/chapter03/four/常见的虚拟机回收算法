@@ -1,0 +1,23 @@
+-XX:+UseParallelGC
+Young空间启用Parallel Scavenge方式，Old空间启用MSC（Mark Sweep Compact）方式。
+可以通过 -XX:MaxGCPauseMillis参数来设置更多的暂停时间，也可以通过-XX:GCTimeRatio参数来设置GC时间的比例
+-XX:+UseParallelOldGC
+Young空间启用Parallel Scavenge，Old空间采用Parallel Old
+-XX:+UseSerialGC
+采用串行GC
+
+-XX:+PringGCDetails,输出完整GC信息
+-XX:+PrintGCDateStamps来输出日期格式
+
+
+PSYoungGen是针对Young空间来讲的，“并行清除”是意思（Parallel Scavenge），它讲究“吞吐量”
+尽量增加平均每段时间内对外提供服务的时间。对于整体时间来讲，服务时间更多。
+
+
+导致Full GC
+1.Old区域满的时候（确切的说，是要晋升的对象大于Old区域剩余的空间）
+2.Old区域的剩余空间已经小于平均晋升空间的大小的时候
+3.Perm区域满的时候也会导致Full GC
+4.系统中使用System.gc()的时候也会默认导致Full GC，这样的Full GC在日志中可以看到关键字“system”
+    设置-XX:+DisableExplicitGC参数，代码中的System.gc()不再生效
+5.dump内存的时候，例如：通过jmap等工具来dump内存的时候，也同样会先发生一次Full GC再开始dump

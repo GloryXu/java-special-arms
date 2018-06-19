@@ -1,0 +1,21 @@
+CMS步骤
+CMS-initial-mark，单线程处理，完全暂停Jvm
+CMS-concurrent-mark，并发标记对象，程序不会暂停
+CMS-concurrent-preclean，处理Young与Old之间的引用
+CMS-concurrent-abortable-preclean
+CMS-remark，JVM全暂停的第2个阶段，处理之前并发业务产生的“脏”数据，业务全部暂停，并不是从root目录search
+CMS-concurrent-sweep，不停机，单线程操作，遍历Old，Perm区域，进行清除操作
+CMS-concurrent-reset
+
+
+使用CMS GC，使用-XX:+UseConcMarkSweepGC来启用CMS。启用该参数后，默认对Young空间启用算法：ParNew，
+相当于设置了-XX:+UseParNewGC
+-XX:+UseCMSInitiatingOccupancyOnly，告诉虚拟机仅仅使用设置的比例，而不要去做自动调整
+-XX:CMSInitiatingOccupancyFraction=70，指当Old区域的空间上升到70%的时候开始启用CMS GC，默认值为92%
+// 以下两个配合使用
+-XX:CMSFullGCsBeforeCompaction，默认值0，代表多少次不做压缩Full GC后做一次压缩
+-XX:+UseCMSCompactAtFullCollection，来对碎片做整理
+-XX:ParallelCMSThreads，在CMS GC中设置线程数，默认与CPU个数等值，无需设置它
+-XX:+CMSScavengeBeforeRemark，开启在CMS GC发生remark之前会先做一次Minor GC，对Young空间进行回收，这个时间也是暂停的
+    （因为remark标记的是最近修改的内容，最近修改的内容往往在Young空间内部）
+
