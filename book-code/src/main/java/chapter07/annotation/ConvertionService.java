@@ -1,5 +1,7 @@
 package chapter07.annotation;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -7,8 +9,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import org.apache.commons.lang.StringUtils;
 
 public class ConvertionService {
 
@@ -36,7 +36,9 @@ public class ConvertionService {
 		List<Field>list = findFields(clazz);
 		for(Field field : list) {
 			if (!Modifier.isStatic(field.getModifiers()) && !Modifier.isFinal(field.getModifiers())) {
-				if(!field.isAccessible()) field.setAccessible(true);
+				if(!field.isAccessible()){
+					field.setAccessible(true);
+				}
 				Column columnAnnotation = field.getAnnotation(Column.class);
 				if(columnAnnotation != null) {
 					String value = row.get(columnAnnotation.name());//通过annotation注解的名称来获取对应的值
@@ -63,22 +65,30 @@ public class ConvertionService {
 	}
 	
 	public static Integer getInteger(String value) {
-        if (StringUtils.isEmpty(value)) return null;
+        if (StringUtils.isEmpty(value)){
+            return null;
+        }
         return Integer.valueOf(value);
     }
 
     public static int getInt(String value) {
-        if (StringUtils.isEmpty(value)) return 0;
+        if (StringUtils.isEmpty(value)) {
+            return 0;
+        }
         return Integer.valueOf(value);
     }
 
     public static Long getLongWrapper(String value) {
-        if (StringUtils.isEmpty(value)) return null;
+        if (StringUtils.isEmpty(value)) {
+            return null;
+        }
         return Long.valueOf(value);
     }
 
     public static long getLong(String value) {
-        if (StringUtils.isEmpty(value)) return 0;
+        if (StringUtils.isEmpty(value)){
+            return 0;
+        }
         return Long.valueOf(value);
     }
 }

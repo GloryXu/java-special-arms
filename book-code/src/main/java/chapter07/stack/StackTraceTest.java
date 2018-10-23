@@ -1,6 +1,7 @@
 package chapter07.stack;
 
-import org.apache.commons.lang.exception.ExceptionUtils;
+
+import org.apache.commons.lang3.exception.ExceptionUtils;
 
 public class StackTraceTest {
 
@@ -14,7 +15,7 @@ public class StackTraceTest {
 	}
 	
 	public static String getStackTrace() {
-		return ExceptionUtils.getFullStackTrace(new Exception());
+		return ExceptionUtils.getStackTrace(new Exception());
 	}
 	
 	public StackTraceElement[] findNoStaticStack1() {
