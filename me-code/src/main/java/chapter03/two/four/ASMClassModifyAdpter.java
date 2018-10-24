@@ -1,14 +1,13 @@
 package chapter03.two.four;
 
-import org.objectweb.asm.ClassAdapter;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 
-public class ASMClassModifyAdpter extends ClassAdapter {
+public class ASMClassModifyAdpter extends ClassVisitor {
 
-    public ASMClassModifyAdpter(ClassVisitor classVisitor) {
-        super(classVisitor);
+    public ASMClassModifyAdpter(int i, ClassVisitor classVisitor) {
+        super(i, classVisitor);
     }
 
     public MethodVisitor visitMethod(final int access, final String methodName,

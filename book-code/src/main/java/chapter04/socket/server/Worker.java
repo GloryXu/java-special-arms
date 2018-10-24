@@ -33,8 +33,8 @@ public class Worker extends Thread {
 	public Worker(SocketWrapper socketWrapper , String name) {
 		this.socketWrapper = socketWrapper;
 		this.name = name;
-		logInfo("ÎÒÊÇÏß³Ì£º" + name + " , ¿ªÊ¼Æô¶¯½ÓÊÕ¿Í»§¶Ë´«À´Êı¾İ......");
-		this.start();//Æô¶¯
+		logInfo("æˆ‘æ˜¯çº¿ç¨‹ï¼š" + name + " , å¼€å§‹å¯åŠ¨æ¥æ”¶å®¢æˆ·ç«¯ä¼ æ¥æ•°æ®......");
+		this.start();//å¯åŠ¨
 	}
 	
 	public void run() {
@@ -54,14 +54,14 @@ public class Worker extends Thread {
 			}catch(DownloadNotExistsFileException e) {
 				logInfo(e.getMessage());
 			}catch(EOFException e) {
-				logInfo("¿Í»§¶Ë¹Ø±Õsocket£¬Ïß³Ì :" + name + " ½áÊøÖ´ĞĞ.");
-				break;//¶Ô·½socketÒÑ¾­¶Ï¿ª
+				logInfo("å®¢æˆ·ç«¯å…³é—­socketï¼Œçº¿ç¨‹ :" + name + " ç»“æŸæ‰§è¡Œ.");
+				break;//å¯¹æ–¹socketå·²ç»æ–­å¼€
 			}catch(SocketException e) {
-				logInfo("SocketÒì³££º" + e.getMessage() + "£¬Ïß³Ì :" + name + " ½áÊøÖ´ĞĞ.");
-				break;//socketÒì³£
+				logInfo("Socketå¼‚å¸¸ï¼š" + e.getMessage() + "ï¼Œçº¿ç¨‹ :" + name + " ç»“æŸæ‰§è¡Œ.");
+				break;//socketå¼‚å¸¸
 			}catch(Exception e) {
 				e.printStackTrace();
-				logInfo("Ïß³Ì :" + name + " ½áÊøÖ´ĞĞ.");
+				logInfo("çº¿ç¨‹ :" + name + " ç»“æŸæ‰§è¡Œ.");
 				break;
 			}
 		}
@@ -74,30 +74,30 @@ public class Worker extends Thread {
 	}
 	
 	/**
-	 * ´¦Àí¿Í»§¶Ë´«À´µÄĞÅÏ¢Á÷
+	 * å¤„ç†å®¢æˆ·ç«¯ä¼ æ¥çš„ä¿¡æ¯æµ
 	 * @throws IOException 
 	 */
 	private void processMessage() throws IOException {
 		int length = socketWrapper.readInt();
 		byte[]message = new byte[length];
 		socketWrapper.read(message);
-		logInfo("Ïß³Ì£º" + name  + " ½ÓÊÜµ½À´×Ô¿Í»§¶Ë´«À´messageĞÅÏ¢£º" + new String(message , DEFAULT_MESSAGE_CHARSET));
+		logInfo("çº¿ç¨‹ï¼š" + name  + " æ¥å—åˆ°æ¥è‡ªå®¢æˆ·ç«¯ä¼ æ¥messageä¿¡æ¯ï¼š" + new String(message , DEFAULT_MESSAGE_CHARSET));
 	}
 	
 	/**
-	 * ´¦Àí¿Í»§¶Ë´«À´µÄÆÕÍ¨ÎÄ¼ş
+	 * å¤„ç†å®¢æˆ·ç«¯ä¼ æ¥çš„æ™®é€šæ–‡ä»¶
 	 * @throws IOException
 	 */
 	private void processFile() throws IOException {
-		//»ñÈ¡×Ö·û¼¯
+		//è·å–å­—ç¬¦é›†
 		String charset = Commons.getCharsetNameByCode(socketWrapper.readByte());
-		logInfo("Ïß³Ì£º" + name + "½ÓÊÜÀ´Ô´¿Í»§¶Ë·¢ËÍÎÄ¼ş£¬×Ö·û¼¯Îª£º" + charset);
+		logInfo("çº¿ç¨‹ï¼š" + name + "æ¥å—æ¥æºå®¢æˆ·ç«¯å‘é€æ–‡ä»¶ï¼Œå­—ç¬¦é›†ä¸ºï¼š" + charset);
 		
 		uploadFileContent(charset);
 	}
 
 	/**
-	 * ÉÏ´«ÎÄ¼ş´¦ÀíÃ÷Ï¸
+	 * ä¸Šä¼ æ–‡ä»¶å¤„ç†æ˜ç»†
 	 * @param charset
 	 * @throws IOException
 	 * @throws UnsupportedEncodingException
@@ -107,24 +107,24 @@ public class Worker extends Thread {
 			UnsupportedEncodingException, FileNotFoundException {
 		FileOutputStream out = null;
 		try {
-			//»ñÈ¡ÎÄ¼şÃû³¤¶ÈÒÔ¼°ÎÄ¼şÃû
+			//è·å–æ–‡ä»¶åé•¿åº¦ä»¥åŠæ–‡ä»¶å
 			short length = socketWrapper.readShort();
 			byte[]bytes = new byte[length];
 			socketWrapper.readFull(bytes);
 			String fileName = new String(bytes , DEFAULT_MESSAGE_CHARSET);
-			logInfo("Ïß³Ì£º" + name + "½ÓÊÜÀ´Ô´¿Í»§¶Ë·¢ËÍÎÄ¼ş£¬À´Ô´ÎÄ¼şÃûÎª£º" + fileName);
+			logInfo("çº¿ç¨‹ï¼š" + name + "æ¥å—æ¥æºå®¢æˆ·ç«¯å‘é€æ–‡ä»¶ï¼Œæ¥æºæ–‡ä»¶åä¸ºï¼š" + fileName);
 			
 			String path = SERVER_SAVE_BASE_PATH + fileName;
 			File file = new File(path);
 			if(file.exists()) {
 				throw new SaveExistsFileException(path);
 			}
-			socketWrapper.write(1);//±íÊ¾ÎÄ¼ş¿ÉÒÔ´´½¨
+			socketWrapper.write(1);//è¡¨ç¤ºæ–‡ä»¶å¯ä»¥åˆ›å»º
 			out = new FileOutputStream(file);
 			
-			//»ñÈ¡ÎÄ¼şÄÚÈİ£¬Êä³öÇ°Ãæ²¿·ÖÄÚÈİ
+			//è·å–æ–‡ä»¶å†…å®¹ï¼Œè¾“å‡ºå‰é¢éƒ¨åˆ†å†…å®¹
 			long fileLength = socketWrapper.readLong();
-			logInfo("Ïß³Ì£º" + name + "½ÓÊÜÀ´Ô´¿Í»§¶Ë·¢ËÍÎÄ¼ş£¬ÎÄ¼ş³¤¶ÈÎª£º" + fileLength);
+			logInfo("çº¿ç¨‹ï¼š" + name + "æ¥å—æ¥æºå®¢æˆ·ç«¯å‘é€æ–‡ä»¶ï¼Œæ–‡ä»¶é•¿åº¦ä¸ºï¼š" + fileLength);
 			bytes = new byte[DEFAULT_BUFFER_LENGTH];
 			int allLength = 0 , i = 0;
 			while(allLength < fileLength) {
@@ -138,13 +138,13 @@ public class Worker extends Thread {
 					print(".");
 				}
 			}
-			logInfo("\nÎÄ¼ş½ÓÊÕÍê±Ï²¢±£´æ£¬Ïò¿Í»§¶Ë·¢ËÍÈ·ÈÏĞÅÏ¢ , Êµ¼Ê½ÓÊÜÄÚÈİ³¤¶ÈÎª£º" + fileLength);
+			logInfo("\næ–‡ä»¶æ¥æ”¶å®Œæ¯•å¹¶ä¿å­˜ï¼Œå‘å®¢æˆ·ç«¯å‘é€ç¡®è®¤ä¿¡æ¯ , å®é™…æ¥å—å†…å®¹é•¿åº¦ä¸ºï¼š" + fileLength);
 			socketWrapper.write(1);
 		}catch(SaveExistsFileException e) {
 			socketWrapper.write(-1);
 			throw e;
 		}catch(RuntimeException e) {
-			logInfo("\nÎÄ¼ş½ÓÊÕÊ§°Ü£¬Ïò¿Í»§¶Ë·¢ËÍ´íÎóÏûÏ¢¡£");
+			logInfo("\næ–‡ä»¶æ¥æ”¶å¤±è´¥ï¼Œå‘å®¢æˆ·ç«¯å‘é€é”™è¯¯æ¶ˆæ¯ã€‚");
 			socketWrapper.write(-2);
 			throw e;
 		}finally {
@@ -153,7 +153,7 @@ public class Worker extends Thread {
 	}
 	
 	/**
-	 * ÏÂÔØÎÄ¼ş¹¦ÄÜ
+	 * ä¸‹è½½æ–‡ä»¶åŠŸèƒ½
 	 * @throws IOException
 	 * @throws UnsupportedEncodingException
 	 * @throws FileNotFoundException
@@ -164,7 +164,7 @@ public class Worker extends Thread {
 		byte []fileNameBytes = new byte[fileNameLength];
 		socketWrapper.read(fileNameBytes);
 		String fileName = new String(fileNameBytes , DEFAULT_MESSAGE_CHARSET);
-		logInfo("Ïß³Ì£º" + name + "½ÓÊÜ¿Í»§¶ËÏÂÔØÎÄ¼ş£¬ÏÂÔØÎÄ¼şÃûÎª£º" + fileName);
+		logInfo("çº¿ç¨‹ï¼š" + name + "æ¥å—å®¢æˆ·ç«¯ä¸‹è½½æ–‡ä»¶ï¼Œä¸‹è½½æ–‡ä»¶åä¸ºï¼š" + fileName);
 		
 		String absolatePath = SERVER_SAVE_BASE_PATH + fileName;
 		File file = new File(absolatePath);
@@ -174,7 +174,7 @@ public class Worker extends Thread {
 			socketWrapper.write(-1);
 			throw new DownloadNotExistsFileException(absolatePath);
 		}
-		socketWrapper.write(file.length());//ÎÄ¼ş³¤¶È
-		socketWrapper.writeFile(absolatePath);//ÎÄ¼ş
+		socketWrapper.write(file.length());//æ–‡ä»¶é•¿åº¦
+		socketWrapper.writeFile(absolatePath);//æ–‡ä»¶
 	}
 }

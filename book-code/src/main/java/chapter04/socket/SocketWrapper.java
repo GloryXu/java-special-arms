@@ -112,13 +112,13 @@ public class SocketWrapper implements Closeable {
 				byte []bytes = new byte[PAGE_SIZE];
 				int allLength = 0;
 				int length = fileInputStream.read(bytes);
-				while(length > 0) {//³¬¹ıÒ»¶¨´óĞ¡ÎÄ¼ş£¬·Ö¶Î´«ËÍ
+				while(length > 0) {//è¶…è¿‡ä¸€å®šå¤§å°æ–‡ä»¶ï¼Œåˆ†æ®µä¼ é€
 					allLength += length;
 					this.write(bytes , length);
 					length = fileInputStream.read(bytes);
 					print(".");
 				}
-				println("Êµ¼Ê·¢ËÍÎÄ¼ş³¤¶ÈÎª£º" + allLength);
+				println("å®é™…å‘é€æ–‡ä»¶é•¿åº¦ä¸ºï¼š" + allLength);
 			}else {
 				byte []bytes = new byte[(int)fileLenth];
 				fileInputStream.read(bytes);

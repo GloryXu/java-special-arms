@@ -11,12 +11,12 @@ import chapter04.socket.SocketWrapper;
 
 public class SocketServerMain {
 	
-	private final static List<Worker> workers = new ArrayList<Worker>();
+	private final static List<Worker> workers = new ArrayList<>();
 
 	public static void main(String []args) throws IOException {
 		initPath();
 		ServerSocket serverSocket = new ServerSocket(8888);
-		logInfo("¶Ë¿ÚÒÑ¾­´ò¿ªÎª8888£¬¿ªÊ¼×¼±¸½ÓÊÜÊı¾İ.....");
+		logInfo("ç«¯å£å·²ç»æ‰“å¼€ä¸º8888ï¼Œå¼€å§‹å‡†å¤‡æ¥å—æ•°æ®.....");
 		try {
 			int index = 1;
 			while(true) {
@@ -40,7 +40,7 @@ public class SocketServerMain {
 		if(!file.exists()) {
 			boolean success = file.mkdirs();
 			if(!success) 
-				throw new RuntimeException("ÎŞ·¨´´½¨Ä¿Â¼£º" + SERVER_SAVE_BASE_PATH);
+				throw new RuntimeException("æ— æ³•åˆ›å»ºç›®å½•ï¼š" + SERVER_SAVE_BASE_PATH);
 		}
 	}
 }
