@@ -17,7 +17,7 @@ public class LineProcessor {
 	
 	public LineProcessor(String line) throws Exception {
 		line = preLine(line).trim();
-		if(line.trim().length() == 0) {//Ã»ÓĞÈÎºÎ²Ù×÷
+		if(line.trim().length() == 0) {//æ²¡æœ‰ä»»ä½•æ“ä½œ
 			throw new NoOptionException();
 		}
 		tokens = line.trim().split("\\s+");
@@ -33,7 +33,7 @@ public class LineProcessor {
 	
 	public void sendContentBySocket(SocketWrapper socketWrapper) throws IOException {
 		if(sendable != null && sendable.getSendType() > 0) {
-			socketWrapper.write(sendable.getSendType());//·¢ËÍÀàĞÍ
+			socketWrapper.write(sendable.getSendType());//å‘é€ç±»å‹
 			sendable.sendContent(socketWrapper);
 		}
 	}

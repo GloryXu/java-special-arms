@@ -11,7 +11,7 @@ import java.io.IOException;
 import chapter04.socket.SocketWrapper;
 
 /**
- * ÕâÀïÎª¶ş½øÖÆÎÄ¼ş·¢ËÍµÄÀà
+ * è¿™é‡Œä¸ºäºŒè¿›åˆ¶æ–‡ä»¶å‘é€çš„ç±»
  * @author Administrator
  *
  */
@@ -27,48 +27,48 @@ public class BFileSender implements Sendable {
 		if (tokens.length >= minLength) {
 			file = new File(tokens[1]);
 			if (!file.exists()) {
-				throw new FileNotFoundException("ÎÄ¼ş£º" + tokens[1]
-						+ " Î´ÕÒµ½£¬Çë·¢ËÍ±¾µØ´æÔÚµÄÎÄ¼ş¡£");
+				throw new FileNotFoundException("æ–‡ä»¶ï¼š" + tokens[1]
+						+ " æœªæ‰¾åˆ°ï¼Œè¯·å‘é€æœ¬åœ°å­˜åœ¨çš„æ–‡ä»¶ã€‚");
 			}
 			this.fileLength = file.length();
 		} else {
-			throw new RuntimeException("ÏûÏ¢¸ñÊ½´æÔÚÎÊÌâ£¬ÇëÊ¹ÓÃhelpÃüÁî²é¿´ÊäÈë¸ñÊ½¡£");
+			throw new RuntimeException("æ¶ˆæ¯æ ¼å¼å­˜åœ¨é—®é¢˜ï¼Œè¯·ä½¿ç”¨helpå‘½ä»¤æŸ¥çœ‹è¾“å…¥æ ¼å¼ã€‚");
 		}
 	}
 
 	@Override
 	public void sendContent(SocketWrapper socketWrapper) throws IOException {
-		println("ÎÒ´ËÊ±Ïò·şÎñÆ÷¶Ë·¢ËÍ¶ş½øÖÆÎÄ¼ş£¬ÎÄ¼ş´óĞ¡Îª£º" + this.fileLength);
+		println("æˆ‘æ­¤æ—¶å‘æœåŠ¡å™¨ç«¯å‘é€äºŒè¿›åˆ¶æ–‡ä»¶ï¼Œæ–‡ä»¶å¤§å°ä¸ºï¼š" + this.fileLength);
 		sendCharset(socketWrapper);
-		//ÎÄ¼şÃû
+		//æ–‡ä»¶å
 		byte[] fileNameBytes = file.getName().getBytes(DEFAULT_MESSAGE_CHARSET);
 		socketWrapper.write((short) fileNameBytes.length);
 		socketWrapper.write(fileNameBytes);
 		int status = socketWrapper.readInt();
-		if(status != 1) {//·şÎñÆ÷¶Ë·µ»ØÊÇ·ñ¿ÉÒÔ¼ÌĞøÉÏ´«£¬Èô³öÏÖÎÊÌâÔò²»ÓÃÉÏ´«ÁË
+		if(status != 1) {//æœåŠ¡å™¨ç«¯è¿”å›æ˜¯å¦å¯ä»¥ç»§ç»­ä¸Šä¼ ï¼Œè‹¥å‡ºç°é—®é¢˜åˆ™ä¸ç”¨ä¸Šä¼ äº†
 			processErrorStatus(status);
 		}
-		// ÎÄ¼ş³¤¶È&ÄÚÈİ
+		// æ–‡ä»¶é•¿åº¦&å†…å®¹
 		socketWrapper.write(this.fileLength);
 		socketWrapper.writeFile(file.getPath());
 		status = socketWrapper.readInt();
 		if(status != 1) {
 			processErrorStatus(status);
 		}else {
-			println("ÎÄ¼ş·¢ËÍ³É¹¦£¬ÒÑ¾­³É¹¦±£´æµ½·şÎñÆ÷¶Ë.......");
+			println("æ–‡ä»¶å‘é€æˆåŠŸï¼Œå·²ç»æˆåŠŸä¿å­˜åˆ°æœåŠ¡å™¨ç«¯.......");
 		}
 	}
 	
 	private void processErrorStatus(int status) throws IOException {
 		if (status == -1) {
-			throw new RuntimeException("·şÎñÆ÷¶Ë±£´æÊ§°Ü£¬ÓÉÓÚ·şÎñÆ÷¶ËÒÑ¾­´æÔÚ¸ÃÎÄ¼şµ¼ÖÂ..");
+			throw new RuntimeException("æœåŠ¡å™¨ç«¯ä¿å­˜å¤±è´¥ï¼Œç”±äºæœåŠ¡å™¨ç«¯å·²ç»å­˜åœ¨è¯¥æ–‡ä»¶å¯¼è‡´..");
 		} else if (status != 1) {
-			throw new IOException("·şÎñÆ÷¶Ë±£´æÊ§°Ü£¬²»È·¶¨¾ßÌåÔ­Òò£¬³ÌĞò½«½áÊøÔËĞĞ....");
+			throw new IOException("æœåŠ¡å™¨ç«¯ä¿å­˜å¤±è´¥ï¼Œä¸ç¡®å®šå…·ä½“åŸå› ï¼Œç¨‹åºå°†ç»“æŸè¿è¡Œ....");
 		}
 	}
 	
 	protected void sendCharset(SocketWrapper socketWrapper) throws IOException {
-		/*Äã¿ÉÒÔ¼Ì³ĞÅ¶*/
+		/*ä½ å¯ä»¥ç»§æ‰¿å“¦*/
 	}
 
 	@Override

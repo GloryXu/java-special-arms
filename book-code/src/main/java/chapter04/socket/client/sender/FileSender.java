@@ -25,12 +25,12 @@ public class FileSender extends BFileSender {
 		if (token.startsWith(CHARSET_START)) {
 			return token.substring(CHARSET_START.length());
 		} else {
-			throw new RuntimeException("×Ö·û¼¯²¿·Ö²»·ûºÏ¹æ·¶.");
+			throw new RuntimeException("å­—ç¬¦é›†éƒ¨åˆ†ä¸ç¬¦åˆè§„èŒƒ.");
 		}
 	}
 	
 	protected void sendCharset(SocketWrapper socketWrapper) throws IOException {
-		socketWrapper.write(charsetByte);// ×Ö·û¼¯
+		socketWrapper.write(charsetByte);// å­—ç¬¦é›†
 	}
 	
 	@Override

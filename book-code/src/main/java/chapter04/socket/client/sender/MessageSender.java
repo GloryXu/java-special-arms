@@ -8,9 +8,9 @@ import static chapter04.socket.Commons.*;
 
 public class MessageSender implements Sendable {
 	
-	private String message;//ÆÕÍ¨µÄmessageÏûÏ¢
+	private String message;//æ™®é€šçš„messageæ¶ˆæ¯
 	
-	private byte []messageBytes;//ÏûÏ¢·¢ËÍÊ±Ê¹ÓÃ
+	private byte []messageBytes;//æ¶ˆæ¯å‘é€æ—¶ä½¿ç”¨
 	
 	private int length = 0;
 	
@@ -20,20 +20,20 @@ public class MessageSender implements Sendable {
 			this.messageBytes = message.getBytes(DEFAULT_MESSAGE_CHARSET);
 			this.length = messageBytes.length;
 		}else {
-			throw new RuntimeException("ÇëÔÚsendMsgºóÃæÌí¼ÓÄÚÈİ¡£");
+			throw new RuntimeException("è¯·åœ¨sendMsgåé¢æ·»åŠ å†…å®¹ã€‚");
 		}
 	}
 
 	/**
-	 * ·¢ËÍÄÚÈİ´¦Àí
+	 * å‘é€å†…å®¹å¤„ç†
 	 * @throws IOException 
 	 */
 	@Override
 	public void sendContent(SocketWrapper socketWrapper) throws IOException {
-		println("ÎÒ´ËÊ±Ïë·şÎñÆ÷¶Ë·¢ËÍÏûÏ¢£º" + message);
+		println("æˆ‘æ­¤æ—¶æƒ³æœåŠ¡å™¨ç«¯å‘é€æ¶ˆæ¯ï¼š" + message);
 		socketWrapper.write(length);
 		socketWrapper.write(messageBytes);
-		println("·¢ËÍÏûÏ¢Íê±Ï¡£");
+		println("å‘é€æ¶ˆæ¯å®Œæ¯•ã€‚");
 	}
 
 	@Override

@@ -5,7 +5,7 @@ public class DownloadNotExistsFileException extends RuntimeException {
 	private static final long serialVersionUID = 2969567696674112542L;
 	
 	public DownloadNotExistsFileException(String path) {
-		super("ÎŞ·¨ÏÂÔØÎÄ¼ş£º" + path + "£¬ÒòÎª·şÎñÆ÷¶Ë²»´æÔÚÕâ¸öÎÄ¼ş....");
+		super("æ— æ³•ä¸‹è½½æ–‡ä»¶ï¼š" + path + "ï¼Œå› ä¸ºæœåŠ¡å™¨ç«¯ä¸å­˜åœ¨è¿™ä¸ªæ–‡ä»¶....");
 	}
 
 }

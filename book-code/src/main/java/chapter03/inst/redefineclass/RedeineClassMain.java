@@ -24,10 +24,10 @@ public class RedeineClassMain {
 			CannotCompileException, IOException {
 		CtClass ctClass = ClassPool.getDefault().get("chapter3.asm.ForASMTestClass");
 		CtMethod ctMethod = ctClass.getDeclaredMethod("display1");
-		ctMethod.insertBefore("{ System.out.println(\"前面加一条呀！\"); }");
+		ctMethod.insertBefore("{ System.out.println(\"鍓嶉潰鍔犱竴鏉″憖锛乗"); }");
 		ctMethod.insertAfter(
-				"String a = \"定义个String\";" +
-				"System.out.println(\"输出我定义的String！\" + a);"
+				"String a = \"瀹氫箟涓猄tring\";" +
+				"System.out.println(\"杈撳嚭鎴戝畾涔夌殑String锛乗" + a);"
 		);
 		byte[]bytes = ctClass.toBytecode();
 		return bytes;

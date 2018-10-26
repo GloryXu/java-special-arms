@@ -20,11 +20,11 @@ public class DeepObjectSizeOf {
 		return inst.getObjectSize(object);
 	}
 	
-	public static long deepSizeOf(Object obj) {//ÉîÈë¼ìË÷¶ÔÏó£¬²¢¼ÆËã´óĞ¡
+	public static long deepSizeOf(Object obj) {//æ·±å…¥æ£€ç´¢å¯¹è±¡ï¼Œå¹¶è®¡ç®—å¤§å°
 	       Map<Object, Object> visited = new IdentityHashMap<Object, Object>();
 	       Stack<Object> stack = new Stack<Object>();
 	       long result = internalSizeOf(obj, stack, visited);
-	       while (!stack.isEmpty()) {//Í¨¹ıÕ»½øĞĞ±éÀú
+	       while (!stack.isEmpty()) {//é€šè¿‡æ ˆè¿›è¡Œéå†
 	          result += internalSizeOf(stack.pop(), stack, visited);
 	       }
 	       visited.clear();
@@ -44,12 +44,12 @@ public class DeepObjectSizeOf {
 	       if (needSkipObject(obj, visited)) {
 	           return 0;
 	       }
-	       visited.put(obj, null);//½«µ±Ç°¶ÔÏó·ÅÈëÕ»ÖĞ
+	       visited.put(obj, null);//å°†å½“å‰å¯¹è±¡æ”¾å…¥æ ˆä¸­
 	       long result = 0;
 	       result += sizeOf(obj);
 	       Class <?>clazz = obj.getClass();
-	       if (clazz.isArray()) {//Èç¹ûÊı×é
-	           if(clazz.getName().length() != 2) {//Èç¹ûprimitive type array£¬ClassµÄnameÎª2Î»
+	       if (clazz.isArray()) {//å¦‚æœæ•°ç»„
+	           if(clazz.getName().length() != 2) {//å¦‚æœprimitive type arrayï¼ŒClassçš„nameä¸º2ä½
 	              int length =  Array.getLength(obj);
 	              for (int i = 0; i < length; i++) {
 	                 stack.add(Array.get(obj, i));
@@ -60,20 +60,20 @@ public class DeepObjectSizeOf {
 	       return getNodeSize(clazz , result , obj , stack);
 	   }
 
-	   //Õâ¸ö·½·¨»ñÈ¡·ÇÊı×é¶ÔÏó×ÔÉíµÄ´óĞ¡£¬²¢ÇÒ¿ÉÒÔÏò¸¸Àà½øĞĞÏòÉÏËÑË÷
+	   //è¿™ä¸ªæ–¹æ³•è·å–éæ•°ç»„å¯¹è±¡è‡ªèº«çš„å¤§å°ï¼Œå¹¶ä¸”å¯ä»¥å‘çˆ¶ç±»è¿›è¡Œå‘ä¸Šæœç´¢
 	   private static long getNodeSize(Class <?>clazz , long result , Object obj , Stack<Object> stack) {
 	      while (clazz != null) {
 	          Field[] fields = clazz.getDeclaredFields();
 	          for (Field field : fields) {
-	              if (!Modifier.isStatic(field.getModifiers())) {//ÕâÀïÅ×¿ª¾²Ì¬ÊôĞÔ
-	                   if (field.getType().isPrimitive()) {//ÕâÀïÅ×¿ª»ù±¾¹Ø¼ü×Ö£¨ÒòÎª»ù±¾¹Ø¼ü×ÖÔÚµ÷ÓÃjavaÄ¬ÈÏÌá¹©µÄ·½·¨¾ÍÒÑ¾­¼ÆËã¹ıÁË£©
+	              if (!Modifier.isStatic(field.getModifiers())) {//è¿™é‡ŒæŠ›å¼€é™æ€å±æ€§
+	                   if (field.getType().isPrimitive()) {//è¿™é‡ŒæŠ›å¼€åŸºæœ¬å…³é”®å­—ï¼ˆå› ä¸ºåŸºæœ¬å…³é”®å­—åœ¨è°ƒç”¨javaé»˜è®¤æä¾›çš„æ–¹æ³•å°±å·²ç»è®¡ç®—è¿‡äº†ï¼‰
 	                       continue;
 	                   }else {
 	                       field.setAccessible(true);
 	                      try {
 	                           Object objectToAdd = field.get(obj);
 	                           if (objectToAdd != null) {
-	                                  stack.add(objectToAdd);//½«¶ÔÏó·ÅÈëÕ»ÖĞ£¬Ò»±éµ¯³öºó¼ÌĞø¼ìË÷
+	                                  stack.add(objectToAdd);//å°†å¯¹è±¡æ”¾å…¥æ ˆä¸­ï¼Œä¸€éå¼¹å‡ºåç»§ç»­æ£€ç´¢
 	                           }
 	                       } catch (IllegalAccessException ex) {
 	                           assert false;
@@ -81,7 +81,7 @@ public class DeepObjectSizeOf {
 	              }
 	          }
 	      }
-	      clazz = clazz.getSuperclass();//ÕÒ¸¸Ààclass£¬Ö±µ½Ã»ÓĞ¸¸Àà
+	      clazz = clazz.getSuperclass();//æ‰¾çˆ¶ç±»classï¼Œç›´åˆ°æ²¡æœ‰çˆ¶ç±»
 	   }
 	   return result;
 	  }

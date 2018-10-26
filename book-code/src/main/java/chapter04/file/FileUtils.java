@@ -32,7 +32,7 @@ public class FileUtils {
 		try {
 			inputStream = new DataInputStream(new FileInputStream(srcFile));
 			outputStream = new FileOutputStream(dstFile);
-			int fileAvailable = inputStream.available();// ÎÄ¼şĞ¡ÓÚ2GÇé¿öÏÂÒ»°ã²»´æÔÚÎÊÌâ
+			int fileAvailable = inputStream.available();// æ–‡ä»¶å°äº2Gæƒ…å†µä¸‹ä¸€èˆ¬ä¸å­˜åœ¨é—®é¢˜
 			if (fileAvailable <= COPY_FILE_SIZE) {
 				byte[] bytes = new byte[fileAvailable];
 				inputStream.readFully(bytes);
@@ -144,7 +144,7 @@ public class FileUtils {
 		ByteBuffer byteBuffer = ByteBuffer.allocateDirect(1024 * 1024);
 		long start = System.currentTimeMillis();
 		//copyFile("d:/TortoiseSVN_1.7.2.22327_x64_XiaZaiBa.zip" , "d:/TortoiseSVN_1.7.2.22327_x64_XiaZaiBa_2222.zip");
-		copyFileByByteBuffer("d:/ÌÔ±¦Java¹¤¾ß°²×°°ü.exe" , "d:/ÌÔ±¦Java¹¤¾ß°²×°°ü2222.exe" , byteBuffer , false);
+		copyFileByByteBuffer("d:/æ·˜å®Javaå·¥å…·å®‰è£…åŒ….exe" , "d:/æ·˜å®Javaå·¥å…·å®‰è£…åŒ…2222.exe" , byteBuffer , false);
 		System.out.println(System.currentTimeMillis() - start);
 	}
 	

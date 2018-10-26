@@ -3,16 +3,16 @@ package chapter05.atomic;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * ÔËĞĞ½á¹ûËµÃ÷£º½öÓĞÒ»¸öÊä³ö£ºÎÒ³É¹¦ÁË£¬ËµÃ÷Ö»ÓĞÒ»¸öÏß³Ì³¢ÊÔ½«booleanÖµĞŞ¸Ä³É¹¦£¬ÆäËûµÄ¶¼Î´³É¹¦£¬´ïµ½ËøµÄĞ§¹û
+ * è¿è¡Œç»“æœè¯´æ˜ï¼šä»…æœ‰ä¸€ä¸ªè¾“å‡ºï¼šæˆ‘æˆåŠŸäº†ï¼Œè¯´æ˜åªæœ‰ä¸€ä¸ªçº¿ç¨‹å°è¯•å°†booleanå€¼ä¿®æ”¹æˆåŠŸï¼Œå…¶ä»–çš„éƒ½æœªæˆåŠŸï¼Œè¾¾åˆ°é”çš„æ•ˆæœ
  * @author zhongyin.xy
  *
  */
 public class AtomicBooleanTest {
 
 	/**
-	 * Ö÷Òª·½·¨£º
-	 * @see AtomicBoolean#compareAndSet(boolean, boolean)  µÚÒ»¸ö²ÎÊıÎªÔ­Ê¼Öµ£¬µÚ¶ş¸ö²ÎÊıÎªÒªĞŞ¸ÄµÄĞÂÖµ£¬ÈôĞŞ¸Ä³É¹¦Ôò·µ»Øtrue£¬·ñÔò·µ»Øfalse
-	 * @see AtomicBoolean#getAndSet(boolean)   ³¢ÊÔÉèÖÃĞÂµÄbooleanÖµ£¬Ö±µ½³É¹¦ÎªÖ¹£¬·µ»ØÉèÖÃÇ°µÄÊı¾İ
+	 * ä¸»è¦æ–¹æ³•ï¼š
+	 * @see AtomicBoolean#compareAndSet(boolean, boolean)  ç¬¬ä¸€ä¸ªå‚æ•°ä¸ºåŸå§‹å€¼ï¼Œç¬¬äºŒä¸ªå‚æ•°ä¸ºè¦ä¿®æ”¹çš„æ–°å€¼ï¼Œè‹¥ä¿®æ”¹æˆåŠŸåˆ™è¿”å›trueï¼Œå¦åˆ™è¿”å›false
+	 * @see AtomicBoolean#getAndSet(boolean)   å°è¯•è®¾ç½®æ–°çš„booleanå€¼ï¼Œç›´åˆ°æˆåŠŸä¸ºæ­¢ï¼Œè¿”å›è®¾ç½®å‰çš„æ•°æ®
 	 */
 	public final static AtomicBoolean TEST_BOOLEAN = new AtomicBoolean();
 	
@@ -26,7 +26,7 @@ public class AtomicBooleanTest {
 						e.printStackTrace();
 					}
 					if(TEST_BOOLEAN.compareAndSet(false, true)) {
-						System.out.println("ÎÒ³É¹¦ÁË£¡");
+						System.out.println("æˆ‘æˆåŠŸäº†ï¼");
 					}
 				}
 			}.start();

@@ -6,7 +6,7 @@ public class AtomicLongTest {
 	
 	/**
 	 * 
-	 * 方法基本和AtomicInteger类似
+	 * 鏂规硶鍩烘湰鍜孉tomicInteger绫讳技
 	 */
 	public final static AtomicLong TEST_LONG = new AtomicLong(1);
 

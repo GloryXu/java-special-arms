@@ -8,7 +8,7 @@ public class HeapOOM {
 	public static void main(String []args) {
 		List<String>list = new ArrayList<String>();
 		while(true) {
-			list.add("ÄÚ´æÒç³öÑ½£¬ÄÚ´æÒç³öÑ½£¡");
+			list.add("å†…å­˜æº¢å‡ºå‘€ï¼Œå†…å­˜æº¢å‡ºå‘€ï¼");
 		}
 	}
 }

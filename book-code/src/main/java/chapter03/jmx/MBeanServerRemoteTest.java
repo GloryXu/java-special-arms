@@ -18,7 +18,7 @@ import javax.management.remote.JMXServiceURL;
 public class MBeanServerRemoteTest {
 
 	/**
-	 * Ô¶³ÌµØÖ·ĞèÒª¿ªÆô£º
+	 * è¿œç¨‹åœ°å€éœ€è¦å¼€å¯ï¼š
 	 * -Dcom.sun.management.jmxremote 
 	 * -Dcom.sun.management.jmxremote.port=9000 
 	 * -Dcom.sun.management.jmxremote.authenticate=true
@@ -45,6 +45,6 @@ public class MBeanServerRemoteTest {
 		System.out.println(JMXUtils.getFullGC(mBeanServer));
 		System.out.println(mBeanServer.getAttribute(new ObjectName("JMImplementation:type=MBeanServerDelegate"), "ImplementationVersion"));
 		System.out.println(mBeanServer.getAttribute(new ObjectName("java.lang:type=Runtime"), "BootClassPath"));
-		//ÆäÓàµÄ¿ÉÒÔ×Ô¼º±éÀú³öÀ´
+		//å…¶ä½™çš„å¯ä»¥è‡ªå·±éå†å‡ºæ¥
 	}
 }

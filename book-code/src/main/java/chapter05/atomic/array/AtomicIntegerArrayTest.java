@@ -3,24 +3,24 @@ package chapter05.atomic.array;
 import java.util.concurrent.atomic.AtomicIntegerArray;
 
 /**
- * ������˵����
- * 10���̲߳����ҵ�
+ * 计算结果说明：
+ * 10个线程并发找到
  * @author zhongyin.xy
  *
  */
 public class AtomicIntegerArrayTest {
 
 	/**
-	 * �����ķ����б�
-	 * @see AtomicIntegerArray#addAndGet(int, int) ִ�мӷ�����һ������Ϊ������±꣬�ڶ�������Ϊ���ӵ��������������Ӻ�Ľ��
-	 * @see AtomicIntegerArray#compareAndSet(int, int, int) �Ա��޸ģ�����1�������±꣬����2��ԭʼֵ������3���޸�Ŀ��ֵ���޸ĳɹ�����true����false
-	 * @see AtomicIntegerArray#decrementAndGet(int) ����Ϊ�����±꣬�������Ӧ���ּ���1�����ؼ��ٺ������
-	 * @see AtomicIntegerArray#incrementAndGet(int) ����Ϊ�����±꣬�������Ӧ��������1���������Ӻ������
+	 * 常见的方法列表
+	 * @see AtomicIntegerArray#addAndGet(int, int) 执行加法，第一个参数为数组的下标，第二个参数为增加的数量，返回增加后的结果
+	 * @see AtomicIntegerArray#compareAndSet(int, int, int) 对比修改，参数1：数组下标，参数2：原始值，参数3，修改目标值，修改成功返回true否则false
+	 * @see AtomicIntegerArray#decrementAndGet(int) 参数为数组下标，将数组对应数字减少1，返回减少后的数据
+	 * @see AtomicIntegerArray#incrementAndGet(int) 参数为数组下标，将数组对应数字增加1，返回增加后的数据
 	 * 
-	 * @see AtomicIntegerArray#getAndAdd(int, int) ��addAndGet���ƣ������Ƿ���ֵ�Ǳ仯ǰ������
-	 * @see AtomicIntegerArray#getAndDecrement(int) ��decrementAndGet���ƣ������Ƿ��ر仯ǰ������
-	 * @see AtomicIntegerArray#getAndIncrement(int) ��incrementAndGet���ƣ������Ƿ��ر仯ǰ������
-	 * @see AtomicIntegerArray#getAndSet(int, int) ����Ӧ�±����������Ϊָ��ֵ���ڶ�������Ϊ���õ�ֵ�������Ǳ仯ǰ������
+	 * @see AtomicIntegerArray#getAndAdd(int, int) 和addAndGet类似，区别是返回值是变化前的数据
+	 * @see AtomicIntegerArray#getAndDecrement(int) 和decrementAndGet类似，区别是返回变化前的数据
+	 * @see AtomicIntegerArray#getAndIncrement(int) 和incrementAndGet类似，区别是返回变化前的数据
+	 * @see AtomicIntegerArray#getAndSet(int, int) 将对应下标的数字设置为指定值，第二个参数为设置的值，返回是变化前的数据
 	 */
 	private final static AtomicIntegerArray ATOMIC_INTEGER_ARRAY = new AtomicIntegerArray(10);
 	
@@ -32,7 +32,7 @@ public class AtomicIntegerArrayTest {
 			threads[i] = new Thread() {
 				public void run() {
 					int result = ATOMIC_INTEGER_ARRAY.addAndGet(index, index + 1);
-					System.out.println("�̱߳��Ϊ��" + threadNum + " , ��Ӧ��ԭʼֵΪ��" + (index + 1) + "�����Ӻ�Ľ��Ϊ��" + result);
+					System.out.println("线程编号为：" + threadNum + " , 对应的原始值为：" + (index + 1) + "，增加后的结果为：" + result);
 				}
 			};
 			threads[i].start();
@@ -40,7 +40,7 @@ public class AtomicIntegerArrayTest {
 		for(Thread thread : threads) {
 			thread.join();
 		}
-		System.out.println("=========================>\nִ���Ѿ���ɣ�����б���");
+		System.out.println("=========================>\n执行已经完成，结果列表：");
 		for(int i = 0 ; i < ATOMIC_INTEGER_ARRAY.length() ; i++) {
 			System.out.println(ATOMIC_INTEGER_ARRAY.get(i));
 		}

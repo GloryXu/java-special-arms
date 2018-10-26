@@ -22,7 +22,7 @@ public class UnsafeTest {
 
 	public static void main(String []args) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
 		Unsafe unsafe = getUnsafe();
-		System.out.println("JVMµØÖ·¿í¶È£º" + unsafe.addressSize());//Êä³öJVMµØÖ·¿í¶È
+		System.out.println("JVMåœ°å€å®½åº¦ï¼š" + unsafe.addressSize());//è¾“å‡ºJVMåœ°å€å®½åº¦
 		
 		Field field1 = UnsafeTest.class.getDeclaredField("longV");
 		Field field2 = UnsafeTest.class.getDeclaredField("intV1");

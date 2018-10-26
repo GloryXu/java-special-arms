@@ -7,11 +7,11 @@ public class InstForTransformer {
 	
     private static Instrumentation inst;
 	
-    /*±àÒëÎªagentºó£¬ÏµÍ³Æô¶¯Ö´ĞĞmain·½·¨Ç°»áµ÷ÓÃËü*/
+    /*ç¼–è¯‘ä¸ºagentåï¼Œç³»ç»Ÿå¯åŠ¨æ‰§è¡Œmainæ–¹æ³•å‰ä¼šè°ƒç”¨å®ƒ*/
     public static void premain(String agentArgs, Instrumentation instP) {
        inst = instP;
        inst.addTransformer(new TestTransformer() , true);
-       //ÉèÖÃÎªtrueºó£¬¿ÉÒÔÔÚÔËĞĞÊ±½øĞĞretransformClasses·½·¨£¬·ñÔòµ÷ÓÃretransformClassesÎŞĞ§
+       //è®¾ç½®ä¸ºtrueåï¼Œå¯ä»¥åœ¨è¿è¡Œæ—¶è¿›è¡ŒretransformClassesæ–¹æ³•ï¼Œå¦åˆ™è°ƒç”¨retransformClassesæ— æ•ˆ
        //inst.addTransformer(new TestTransformer() , true);
     }
     

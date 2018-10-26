@@ -4,26 +4,26 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * ½á¹ûËµÃ÷£ºÈç¹û¶à¸öÏß³ÌÍ¬Ê±¶ÔÍ¬Ò»¸ö±äÁ¿½øĞĞµş¼Ó²Ù×÷£¬Ã¿¸öÏß³Ì¼Ó1£¬×îÖÕ½á¹ûÎª³õÊ¼Öµ+Ïß³Ì¸öÊıÎª³É¹¦
+ * ç»“æœè¯´æ˜ï¼šå¦‚æœå¤šä¸ªçº¿ç¨‹åŒæ—¶å¯¹åŒä¸€ä¸ªå˜é‡è¿›è¡Œå åŠ æ“ä½œï¼Œæ¯ä¸ªçº¿ç¨‹åŠ 1ï¼Œæœ€ç»ˆç»“æœä¸ºåˆå§‹å€¼+çº¿ç¨‹ä¸ªæ•°ä¸ºæˆåŠŸ
  * @author zhongyin.xy
  *
  */
 public class AtomicIntegerTest {
 
 	/**
-	 * ³£¼ûµÄ·½·¨ÁĞ±í
-	 * @see AtomicInteger#get()             Ö±½Ó·µ»ØÖµ
-	 * @see AtomicInteger#getAndAdd(int)    Ôö¼ÓÖ¸¶¨µÄÊı¾İ£¬·µ»Ø±ä»¯Ç°µÄÊı¾İ
-	 * @see AtomicInteger#getAndDecrement() ¼õÉÙ1£¬·µ»Ø¼õÉÙÇ°µÄÊı¾İ
-	 * @see AtomicInteger#getAndIncrement() Ôö¼Ó1£¬·µ»ØÔö¼ÓÇ°µÄÊı¾İ
-	 * @see AtomicInteger#getAndSet(int)    ÉèÖÃÖ¸¶¨µÄÊı¾İ£¬·µ»ØÉèÖÃÇ°µÄÊı¾İ
+	 * å¸¸è§çš„æ–¹æ³•åˆ—è¡¨
+	 * @see AtomicInteger#get()             ç›´æ¥è¿”å›å€¼
+	 * @see AtomicInteger#getAndAdd(int)    å¢åŠ æŒ‡å®šçš„æ•°æ®ï¼Œè¿”å›å˜åŒ–å‰çš„æ•°æ®
+	 * @see AtomicInteger#getAndDecrement() å‡å°‘1ï¼Œè¿”å›å‡å°‘å‰çš„æ•°æ®
+	 * @see AtomicInteger#getAndIncrement() å¢åŠ 1ï¼Œè¿”å›å¢åŠ å‰çš„æ•°æ®
+	 * @see AtomicInteger#getAndSet(int)    è®¾ç½®æŒ‡å®šçš„æ•°æ®ï¼Œè¿”å›è®¾ç½®å‰çš„æ•°æ®
 	 * 
-	 * @see AtomicInteger#addAndGet(int)    Ôö¼ÓÖ¸¶¨µÄÊı¾İºó·µ»ØÔö¼ÓºóµÄÊı¾İ
-	 * @see AtomicInteger#decrementAndGet() ¼õÉÙ1£¬·µ»Ø¼õÉÙºóµÄÖµ
-	 * @see AtomicInteger#incrementAndGet() Ôö¼Ó1£¬·µ»ØÔö¼ÓºóµÄÖµ
-	 * @see AtomicInteger#lazySet(int)      ½ö½öµ±getÊ±²Å»áset
+	 * @see AtomicInteger#addAndGet(int)    å¢åŠ æŒ‡å®šçš„æ•°æ®åè¿”å›å¢åŠ åçš„æ•°æ®
+	 * @see AtomicInteger#decrementAndGet() å‡å°‘1ï¼Œè¿”å›å‡å°‘åçš„å€¼
+	 * @see AtomicInteger#incrementAndGet() å¢åŠ 1ï¼Œè¿”å›å¢åŠ åçš„å€¼
+	 * @see AtomicInteger#lazySet(int)      ä»…ä»…å½“getæ—¶æ‰ä¼šset
 	 * 
-	 * @see AtomicInteger#compareAndSet(int, int) ³¢ÊÔĞÂÔöºó¶Ô±È£¬ÈôÔö¼Ó³É¹¦Ôò·µ»Øtrue·ñÔò·µ»Øfalse
+	 * @see AtomicInteger#compareAndSet(int, int) å°è¯•æ–°å¢åå¯¹æ¯”ï¼Œè‹¥å¢åŠ æˆåŠŸåˆ™è¿”å›trueå¦åˆ™è¿”å›false
 	 */
 	public final static AtomicInteger TEST_INTEGER = new AtomicInteger(1);
 	
@@ -53,7 +53,7 @@ public class AtomicIntegerTest {
 		 for(Thread t : threads) {
 			 t.join();
 		 }
-		 System.out.println("×îÖÕÔËĞĞ½á¹û£º" + TEST_INTEGER.get());
-		 System.out.println("×îÖÕÔËĞĞ½á¹û£º" + index);
+		 System.out.println("æœ€ç»ˆè¿è¡Œç»“æœï¼š" + TEST_INTEGER.get());
+		 System.out.println("æœ€ç»ˆè¿è¡Œç»“æœï¼š" + index);
 	}
 }

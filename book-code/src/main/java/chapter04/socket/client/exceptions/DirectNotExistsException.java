@@ -5,7 +5,7 @@ public class DirectNotExistsException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 	
 	public DirectNotExistsException(String directPath) {
-		super("在本地没有找到目录：" + directPath);
+		super("鍦ㄦ湰鍦版病鏈夋壘鍒扮洰褰曪細" + directPath);
 	}
 
 }

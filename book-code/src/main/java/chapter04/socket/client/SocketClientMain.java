@@ -20,7 +20,7 @@ public class SocketClientMain {
 		Scanner scanner = new Scanner(System.in);
 		SocketWrapper socketWrapper = new SocketWrapper("localhost" , 8888);
 		try {
-			print("ÒÑ¾­Á¬½ÓÉÏ·şÎñÆ÷¶Ë£¬ÏÖÔÚ¿ÉÒÔÊäÈëÊı¾İ¿ªÊ¼Í¨ĞÅÁË.....\n>");
+			print("å·²ç»è¿æ¥ä¸ŠæœåŠ¡å™¨ç«¯ï¼Œç°åœ¨å¯ä»¥è¾“å…¥æ•°æ®å¼€å§‹é€šä¿¡äº†.....\n>");
 			String line = scanner.nextLine();
 			while(!"bye".equals(line)) {
 				if(line != null) {
@@ -29,9 +29,9 @@ public class SocketClientMain {
 						processor.sendContentBySocket(socketWrapper);
 						socketWrapper.displayStatus();
 					}catch(ExitException e) {
-						break;//ÍË³öÏµÍ³
+						break;//é€€å‡ºç³»ç»Ÿ
 					}catch(NoOptionException e) {
-						/*Ã»ÓĞ×öÈÎºÎ²Ù×÷*/
+						/*æ²¡æœ‰åšä»»ä½•æ“ä½œ*/
 					}catch(DirectNotExistsException e) {
 						System.out.println(e.getMessage());
 					}catch(RuntimeException e) {
@@ -40,11 +40,11 @@ public class SocketClientMain {
 						System.out.println(e.getMessage());
 					}catch(SocketException e) {
 						socketWrapper.displayStatus();
-						System.out.println("SocketÒì³££º " + e.getMessage()  + "£¬³ÌĞò½«Óë·şÎñÆ÷¶Ï¿ªÁ´½Ó....");
+						System.out.println("Socketå¼‚å¸¸ï¼š " + e.getMessage()  + "ï¼Œç¨‹åºå°†ä¸æœåŠ¡å™¨æ–­å¼€é“¾æ¥....");
 						break;
 					}catch(Exception e) {
 						e.printStackTrace();
-						System.out.println("ÓëÏßÉÏ·şÎñÆ÷¶Ï¿ªÁ´½Ó£¡");
+						System.out.println("ä¸çº¿ä¸ŠæœåŠ¡å™¨æ–­å¼€é“¾æ¥ï¼");
 						break;
 					}
 				}

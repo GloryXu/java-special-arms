@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GCOverHead {
-	/*ÕâÀïÏÈÕ¼ÓÃµôOldÇø³¬¹ı14MµÄ¿Õ¼ä*/
+	/*è¿™é‡Œå…ˆå ç”¨æ‰OldåŒºè¶…è¿‡14Mçš„ç©ºé—´*/
 	public final static byte[]DEFAULT_BYTES = new byte[12 * 1024 * 1024];
 	
 	public static void main(String []args) {	

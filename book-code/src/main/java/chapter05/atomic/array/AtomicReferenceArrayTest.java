@@ -5,10 +5,10 @@ import java.util.concurrent.atomic.AtomicReferenceArray;
 public class AtomicReferenceArrayTest {
 
 	/**
-	 * ³£¼û·½·¨ÁĞ±í£º
-	 * @see AtomicReferenceArray#compareAndSet(int, Object, Object) ²ÎÊı1£ºÊı×éÏÂ±ê£»²ÎÊı2£ºĞŞ¸ÄÔ­Ê¼Öµ¶Ô±È£»²ÎÊı3£ºĞŞ¸ÄÄ¿±êÖµ ĞŞ¸Ä³É¹¦·µ»Øtrue£¬·ñÔò·µ»Øfalse
+	 * å¸¸è§æ–¹æ³•åˆ—è¡¨ï¼š
+	 * @see AtomicReferenceArray#compareAndSet(int, Object, Object) å‚æ•°1ï¼šæ•°ç»„ä¸‹æ ‡ï¼›å‚æ•°2ï¼šä¿®æ”¹åŸå§‹å€¼å¯¹æ¯”ï¼›å‚æ•°3ï¼šä¿®æ”¹ç›®æ ‡å€¼ ä¿®æ”¹æˆåŠŸè¿”å›trueï¼Œå¦åˆ™è¿”å›false
 	 * 
-	 * @see AtomicReferenceArray#getAndSet(int, Object) ²ÎÊı1£ºÊı×éÏÂ±ê£¬²ÎÊı2£ºĞŞ¸ÄµÄÄ¿±ê£¬ĞŞ¸Ä³É¹¦ÎªÖ¹£¬·µ»ØĞŞ¸ÄÇ°µÄÊı¾İ
+	 * @see AtomicReferenceArray#getAndSet(int, Object) å‚æ•°1ï¼šæ•°ç»„ä¸‹æ ‡ï¼Œå‚æ•°2ï¼šä¿®æ”¹çš„ç›®æ ‡ï¼Œä¿®æ”¹æˆåŠŸä¸ºæ­¢ï¼Œè¿”å›ä¿®æ”¹å‰çš„æ•°æ®
 	 * 
 	 */
 	public final static AtomicReferenceArray<String> ATOMIC_REFERENCE_ARRAY = new AtomicReferenceArray<String>(

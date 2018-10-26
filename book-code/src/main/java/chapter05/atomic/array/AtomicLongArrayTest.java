@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicLongArray;
 public class AtomicLongArrayTest {
 
 	/**
-	 * 方法基本和AtomicIntegerArray类似，请参看AtomicIntegerArrayTest测试类的说明以及使用范例
+	 * 鏂规硶鍩烘湰鍜孉tomicIntegerArray绫讳技锛岃鍙傜湅AtomicIntegerArrayTest娴嬭瘯绫荤殑璇存槑浠ュ強浣跨敤鑼冧緥
 	 */
 	public final static AtomicLongArray ATOMIC_LONG_ARRAY = new AtomicLongArray(new long[] {1l,2l,3l});
 }

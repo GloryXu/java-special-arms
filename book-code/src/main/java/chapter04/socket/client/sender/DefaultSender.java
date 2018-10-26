@@ -15,10 +15,10 @@ public class DefaultSender implements Sendable {
 	
 	public DefaultSender(String []tokens) {
 		String firstToken = tokens[0];
-		if(HELP_STR.equalsIgnoreCase(firstToken)) {//°ïÖú
+		if(HELP_STR.equalsIgnoreCase(firstToken)) {//å¸®åŠ©
 			println(HELP_SHOW);
-		}else if(EXIT_STR.equalsIgnoreCase(firstToken)) {//ÍË³ö
-			//System.exit(0);¸Ã·½·¨Ö±½Ó¹Ø±Õ½ø³Ì£¬Ò²¿ÉÒÔÊ¹ÓÃ£¬×Ô¶¨ÒåµÄExitExceptionÍâ²¿»á×ösocket»ØÊÕ´¦Àí
+		}else if(EXIT_STR.equalsIgnoreCase(firstToken)) {//é€€å‡º
+			//System.exit(0);è¯¥æ–¹æ³•ç›´æ¥å…³é—­è¿›ç¨‹ï¼Œä¹Ÿå¯ä»¥ä½¿ç”¨ï¼Œè‡ªå®šä¹‰çš„ExitExceptionå¤–éƒ¨ä¼šåšsocketå›æ”¶å¤„ç†
 			throw new ExitException();
 		}else {
 			throw new RuntimeException(ERROR_MESSAGE_FORMAT);
@@ -32,7 +32,7 @@ public class DefaultSender implements Sendable {
 
 	@Override
 	public void sendContent(SocketWrapper socketWrapper) throws IOException {
-		/*²»·¢ËÍÈÎºÎĞÅÏ¢*/
+		/*ä¸å‘é€ä»»ä½•ä¿¡æ¯*/
 	}
 
 }

@@ -5,8 +5,8 @@ package chapter03.fullgc;
 public class StringInternPermGenFullGC {
 
 	/**
-	 * ÇëÔÚÃüÁîĞĞÏÂÔËĞĞ£¬×¢ÒâÊÇÔÚJDK 1.6ÏÂÔËĞĞ£¬ÔÚJDK 1.7ÖĞÔËĞĞµÄ½á¹û½«ÍêÈ«²»Í¬
-	 * ÔËĞĞ·½Ê½Îªjava -XX:+PrintGCDetials -XX:PermSize10m -XX:MaxPermSize=10m chapter3.fullgc.StringInternPermGenFullGC
+	 * è¯·åœ¨å‘½ä»¤è¡Œä¸‹è¿è¡Œï¼Œæ³¨æ„æ˜¯åœ¨JDK 1.6ä¸‹è¿è¡Œï¼Œåœ¨JDK 1.7ä¸­è¿è¡Œçš„ç»“æœå°†å®Œå…¨ä¸åŒ
+	 * è¿è¡Œæ–¹å¼ä¸ºjava -XX:+PrintGCDetials -XX:PermSize10m -XX:MaxPermSize=10m chapter3.fullgc.StringInternPermGenFullGC
 	 * @param args
 	 */
 	public static void main(String []args) {

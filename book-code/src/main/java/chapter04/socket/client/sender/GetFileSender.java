@@ -9,7 +9,7 @@ import chapter04.socket.client.exceptions.DirectNotExistsException;
 
 import static chapter04.socket.Commons.*;
 /**
- * ÕâÀïÎªÏÂÔØÎÄ¼şµÄÇëÇóÀà
+ * è¿™é‡Œä¸ºä¸‹è½½æ–‡ä»¶çš„è¯·æ±‚ç±»
  * @author Administrator
  *
  */
@@ -35,13 +35,13 @@ public class GetFileSender implements Sendable {
 				throw new DirectNotExistsException(saveFilePath);
 			}
 		}else {
-			throw new RuntimeException("ÏûÏ¢¸ñÊ½´æÔÚÎÊÌâ£¬ÇëÊ¹ÓÃhelpÃüÁî²é¿´ÊäÈë¸ñÊ½¡£");
+			throw new RuntimeException("æ¶ˆæ¯æ ¼å¼å­˜åœ¨é—®é¢˜ï¼Œè¯·ä½¿ç”¨helpå‘½ä»¤æŸ¥çœ‹è¾“å…¥æ ¼å¼ã€‚");
 		}
 	}
 
 	@Override
 	public void sendContent(SocketWrapper socketWrapper) throws IOException {
-		println("×¼±¸ÏÂÔØÎÄ¼ş£º" + getFileName);
+		println("å‡†å¤‡ä¸‹è½½æ–‡ä»¶ï¼š" + getFileName);
 		byte[] fileNameBytes = getFileName.getBytes(DEFAULT_MESSAGE_CHARSET);
 		socketWrapper.write((short) fileNameBytes.length);
 		socketWrapper.write(fileNameBytes);
@@ -54,7 +54,7 @@ public class GetFileSender implements Sendable {
 			FileOutputStream out = new FileOutputStream(saveFilePath + getFileName);
 			try {
 				byte []bytes = new byte[DEFAULT_BUFFER_LENGTH];
-				println("¿ªÊ¼ÏÂÔØÎÄ¼ş£¬ÎÄ¼ş³¤¶ÈÎª£º" + fileLength);
+				println("å¼€å§‹ä¸‹è½½æ–‡ä»¶ï¼Œæ–‡ä»¶é•¿åº¦ä¸ºï¼š" + fileLength);
 				while(readLength < fileLength) {
 					int len = socketWrapper.read(bytes);
 					readLength += len;
@@ -63,7 +63,7 @@ public class GetFileSender implements Sendable {
 						print(".");
 					}
 				}
-				println("¿ªÊ¼ÏÂÔØÍê±Ï.......");
+				println("å¼€å§‹ä¸‹è½½å®Œæ¯•.......");
 			}finally {
 				closeStream(out);
 				println("");
@@ -73,9 +73,9 @@ public class GetFileSender implements Sendable {
 	
 	private void processErrorStatus(int status) {
 		if(status == -1) {
-			println("ERROR£ºÎÄ¼şÏÂÔØÊ§°Ü£¬Ê§°ÜÔ­ÒòÎª·şÎñÆ÷¶ËÃ»ÓĞÕÒµ½Ö¸¶¨µÄÎÄ¼ş....");
+			println("ERRORï¼šæ–‡ä»¶ä¸‹è½½å¤±è´¥ï¼Œå¤±è´¥åŸå› ä¸ºæœåŠ¡å™¨ç«¯æ²¡æœ‰æ‰¾åˆ°æŒ‡å®šçš„æ–‡ä»¶....");
 		}else {
-			println("ERROR£ºÎÄ¼şÏÂÔØÊ§°Ü£¬Ê§°ÜÔ­Òò²»È·¶¨£¬·µ»ØÊ§°Ü´íÎóºÅÎª£º" + status);
+			println("ERRORï¼šæ–‡ä»¶ä¸‹è½½å¤±è´¥ï¼Œå¤±è´¥åŸå› ä¸ç¡®å®šï¼Œè¿”å›å¤±è´¥é”™è¯¯å·ä¸ºï¼š" + status);
 		}
 	}
 

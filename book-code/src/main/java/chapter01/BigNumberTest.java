@@ -6,22 +6,22 @@ import java.math.BigInteger;
 public class BigNumberTest {
 
 	public static void main(String []args) {
-		//Õâ¸öÊı×ÖlongÊÇ·Å²»ÏÂµÄ
+		//è¿™ä¸ªæ•°å­—longæ˜¯æ”¾ä¸ä¸‹çš„
 		BigDecimal bigDecimal = new BigDecimal("1233243243243243243243243243243243241432423432");
-		System.out.println("Êı×ÖµÄÔ­Ê¼ÖµÊÇ£º" + bigDecimal);
+		System.out.println("æ•°å­—çš„åŸå§‹å€¼æ˜¯ï¼š" + bigDecimal);
 		
 		//bigDecimal = bigDecimal.add(BigDecimal.TEN);
-		//System.out.println("Ìí¼Ó10ÒÔºó£º" + bigDecimal);
+		//System.out.println("æ·»åŠ 10ä»¥åï¼š" + bigDecimal);
 		
-		//¶ş½øÖÆÊı×Ö
+		//äºŒè¿›åˆ¶æ•°å­—
 		byte[] bytes = bigDecimal.toBigInteger().toByteArray();
 		for(byte b : bytes) {
 			String bitString = lpad(Integer.toBinaryString(b & 0xff) , '0' , 8);
 			System.out.println(bitString);
 		}
-		//»¹Ô­½á¹û
+		//è¿˜åŸç»“æœ
 		BigInteger bigInteger = new BigInteger(bytes);
-		System.out.println("»¹Ô­½á¹ûÎª£º" + bigInteger);
+		System.out.println("è¿˜åŸç»“æœä¸ºï¼š" + bigInteger);
 	}
 	
 	private static String lpad(String end , char c , int paddingLength) {

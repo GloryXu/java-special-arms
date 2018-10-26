@@ -16,11 +16,11 @@ public class AsynchronousServerTest {
 		AsynchronousServerSocketChannel serverChannel = AsynchronousServerSocketChannel.open(group);
 		serverChannel.bind(new InetSocketAddress("localhost" , 8888) , 128);
 		Future<AsynchronousSocketChannel> future = serverChannel.accept();
-		//serverChannel.accept(attachment, handler)//可传入参数和回调的CompletionHandler达到和Future一样的目的
+		//serverChannel.accept(attachment, handler)//鍙紶鍏ュ弬鏁板拰鍥炶皟鐨凜ompletionHandler杈惧埌鍜孎uture涓�鏍风殑鐩殑
 		process(future.get());
 	}
 	
 	private static void process(AsynchronousSocketChannel asynchronousSocketChannel) {
-		/*得到一个SocketChannel后的操作*/
+		/*寰楀埌涓�涓猄ocketChannel鍚庣殑鎿嶄綔*/
 	}
 }

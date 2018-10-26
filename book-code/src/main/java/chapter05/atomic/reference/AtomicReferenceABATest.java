@@ -5,8 +5,8 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * ABAÎÊÌâÄ£Äâ£¬Ïß³Ì²¢·¢ÖĞ£¬µ¼ÖÂABAÎÊÌâ£¬½â¾ö·½°¸ÊÇÊ¹ÓÃ|AtomicMarkableReference
- * Çë²Î¿´ÏàÓ¦µÄÀı×Ó£ºAtomicStampedReferenceTest¡¢AtomicMarkableReferenceTest
+ * ABAé—®é¢˜æ¨¡æ‹Ÿï¼Œçº¿ç¨‹å¹¶å‘ä¸­ï¼Œå¯¼è‡´ABAé—®é¢˜ï¼Œè§£å†³æ–¹æ¡ˆæ˜¯ä½¿ç”¨|AtomicMarkableReference
+ * è¯·å‚çœ‹ç›¸åº”çš„ä¾‹å­ï¼šAtomicStampedReferenceTestã€AtomicMarkableReferenceTest
  * @author zhongyin.xy
  *
  */
@@ -35,7 +35,7 @@ public class AtomicReferenceABATest {
 						e.printStackTrace();
 					}
 					if(ATOMIC_REFERENCE.compareAndSet(oldValue , oldValue + num)) {
-						System.out.println("ÎÒÊÇÏß³Ì£º" + num + ",ÎÒ»ñµÃÁËËø½øĞĞÁË¶ÔÏóĞŞ¸Ä£¡");
+						System.out.println("æˆ‘æ˜¯çº¿ç¨‹ï¼š" + num + ",æˆ‘è·å¾—äº†é”è¿›è¡Œäº†å¯¹è±¡ä¿®æ”¹ï¼");
 					}
 				}
 			};
@@ -51,7 +51,7 @@ public class AtomicReferenceABATest {
 					e.printStackTrace();
 				}
 				while(!ATOMIC_REFERENCE.compareAndSet(ATOMIC_REFERENCE.get(), "abc"));
-				System.out.println("ÒÑ¾­¸ÄÎªÔ­Ê¼Öµ£¡");
+				System.out.println("å·²ç»æ”¹ä¸ºåŸå§‹å€¼ï¼");
 			}
 		}.start();
 	}

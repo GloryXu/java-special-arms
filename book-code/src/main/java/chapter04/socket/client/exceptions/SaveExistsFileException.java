@@ -5,7 +5,7 @@ public class SaveExistsFileException extends RuntimeException {
 	private static final long serialVersionUID = -1026575092082314002L;
 	
 	public SaveExistsFileException(String path) {
-		super("±£´æÎÄ¼ş:" + path + "Ê§°Ü£¬ÒòÎªÎÄ¼şÒÑ¾­´æÔÚÁË¡£");
+		super("ä¿å­˜æ–‡ä»¶:" + path + "å¤±è´¥ï¼Œå› ä¸ºæ–‡ä»¶å·²ç»å­˜åœ¨äº†ã€‚");
 	}
 	
 }

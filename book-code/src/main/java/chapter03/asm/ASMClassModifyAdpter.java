@@ -14,29 +14,29 @@ public class ASMClassModifyAdpter extends ClassAdapter {
 	public MethodVisitor visitMethod(final int access, final String methodName,
 			final String desc, final String signature, final String[] exceptions) {
 		if("display2".equals(methodName)) {
-			return null;//ÎÒÃÇÆÁ±ÎÁËÕâ¸ö·½·¨
+			return null;//æˆ‘ä»¬å±è”½äº†è¿™ä¸ªæ–¹æ³•
 		}
 		if("display1".equals(methodName)) {
 			MethodVisitor methodVisitor = cv.visitMethod(access, methodName, desc, signature, exceptions);
 			methodVisitor.visitCode();
-			//Ôö¼ÓµÄÓï¾äµÈ¼ÛÓÚÔö¼Ó´úÂë£ºname = "ÎÒÊÇname"
+			//å¢åŠ çš„è¯­å¥ç­‰ä»·äºå¢åŠ ä»£ç ï¼šname = "æˆ‘æ˜¯name"
 			methodVisitor.visitVarInsn(Opcodes.ALOAD , 0);
-			methodVisitor.visitLdcInsn("ÎÒÊÇname");
+			methodVisitor.visitLdcInsn("æˆ‘æ˜¯name");
 			methodVisitor.visitFieldInsn(Opcodes.PUTFIELD , "chapter03/asm/ForASMTestClass" , "name" , "Ljava/lang/String;");
 			
-			//ÕâÌõÓï¾äµÈ¼ÛÓÚÔö¼Ó´úÂë£ºvalue = "ÎÒÊÇvalue";
+			//è¿™æ¡è¯­å¥ç­‰ä»·äºå¢åŠ ä»£ç ï¼švalue = "æˆ‘æ˜¯value";
 			methodVisitor.visitVarInsn(Opcodes.ALOAD , 0);
-			methodVisitor.visitLdcInsn("ÎÒÊÇvalue");
+			methodVisitor.visitLdcInsn("æˆ‘æ˜¯value");
 			methodVisitor.visitFieldInsn(Opcodes.PUTFIELD , "chapter03/asm/ForASMTestClass" , "value" , "Ljava/lang/String;");
 			
-			//ÔÙ½«Ò»¸öÊôĞÔ»ñÈ¡³öÀ´´òÓ¡³öÀ´
+			//å†å°†ä¸€ä¸ªå±æ€§è·å–å‡ºæ¥æ‰“å°å‡ºæ¥
 			methodVisitor.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/System", "out" , "Ljava/io/PrintStream;");
 			methodVisitor.visitVarInsn(Opcodes.ALOAD, 0);
 			methodVisitor.visitFieldInsn(Opcodes.GETFIELD, "chapter03/asm/ForASMTestClass", "name", "Ljava/lang/String;");
 			methodVisitor.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V");
 			
 			methodVisitor.visitEnd();
-			return methodVisitor;//·µ»Øvisitor
+			return methodVisitor;//è¿”å›visitor
 		}else {
 			return cv.visitMethod(access, methodName, desc, signature, exceptions);
 		}

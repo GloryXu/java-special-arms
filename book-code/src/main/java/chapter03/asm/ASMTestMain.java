@@ -17,18 +17,18 @@ public class ASMTestMain {
 			throws ClassNotFoundException, IOException, InstantiationException, 
 			       IllegalAccessException, IllegalArgumentException, SecurityException, 
 			       InvocationTargetException, NoSuchMethodException {
-		//ÔÚ×Ö½ÚÂëÔöÇ¿Ç°¼ÇÂ¼Ò»¸öClass
+		//åœ¨å­—èŠ‚ç å¢å¼ºå‰è®°å½•ä¸€ä¸ªClass
 		Class <?>beforeASMClass = TEST_CLASS_LOADER.loadClass("chapter03.asm.ForASMTestClass");
 		
-		//ÎÒÃÇÖØĞÂ×°ÔØĞŞ¸ÄºóµÄÀà
+		//æˆ‘ä»¬é‡æ–°è£…è½½ä¿®æ”¹åçš„ç±»
 		TEST_CLASS_LOADER.defineClassByByteArray("chapter03.asm.ForASMTestClass", asmChangeClassCall());
 		Class <?>afterASMClass = TEST_CLASS_LOADER.loadClass("chapter03.asm.ForASMTestClass");
 		
-		//·Ö±ğÍ¨¹ıĞÂÀÏclass´´½¨¶ÔÏó
+		//åˆ†åˆ«é€šè¿‡æ–°è€classåˆ›å»ºå¯¹è±¡
 		Object beforeObject = beforeASMClass.newInstance();
 		Object afterObject = afterASMClass.newInstance();
 		
-		//·Ö±íµ÷ÓÃËüÃÇµÄ´úÂë
+		//åˆ†è¡¨è°ƒç”¨å®ƒä»¬çš„ä»£ç 
 		beforeASMClass.getMethod("display1").invoke(beforeObject);
 		afterASMClass.getMethod("display1").invoke(afterObject);
 	}
@@ -39,7 +39,7 @@ public class ASMTestMain {
 		ClassWriter classWriter = new ClassWriter(ClassWriter.COMPUTE_MAXS);
 		ASMClassModifyAdpter modifyAdpter = new ASMClassModifyAdpter(classWriter);
 		classReader.accept(modifyAdpter, ClassReader.SKIP_DEBUG);
-		//ÕâÀïÊä³öµÄ×Ö½ÚÂë£¬¿ÉÒÔÓÃjavapÃüÁîÀ´²é¿´Å¶
+		//è¿™é‡Œè¾“å‡ºçš„å­—èŠ‚ç ï¼Œå¯ä»¥ç”¨javapå‘½ä»¤æ¥æŸ¥çœ‹å“¦
         //byte []bytes = classWriter.toByteArray();
 		//new FileOutputStream("d:/ForASMTestClass.class").write(bytes);
         //return bytes;

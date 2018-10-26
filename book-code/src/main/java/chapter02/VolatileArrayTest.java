@@ -6,8 +6,8 @@ class VolatileInteger {
 public class VolatileArrayTest {
 
 	/**
-	 * �����У������ѭ�����Σ����Ҫ����ʵ�ʵ�Ч������Ҫѭ���ܶ�β��ܿ���ʵ�ʵ�Ч��
-	 * ����������Ч���Լ�CPUʹ�����ı仯
+	 * 本例中，程序仅循环数次，如果要看出实际的效果，需要循环很多次才能看到实际的效果
+	 * 包含了运行效率以及CPU使用量的变化
 	 * @param args
 	 */
 	public static void main(String []args) {
