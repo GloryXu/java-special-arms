@@ -52,15 +52,15 @@ public class Commons {
 	
 	public final static int DEFAULT_BUFFER_LENGTH = 8 * 1024;
 	
-	public final static String HELP_SHOW = "\n\n\t\t²Ù×÷·½Ê½£º\n" +
-	"\t\t1¡¢´«ËÍÆÕÍ¨µÄ×Ö·û´®£¬ÀıÈç£º\"sendMsg ÄãºÃ°¡£¡\" ¼´¿É¡£\n" +
-	"\t\t2¡¢´«ËÍÎÄ±¾ÎÄ¼ş£¬ÀıÈç£º\"sendFile /home/xieyuooo/a.sql charset=utf-8\"\n" +
-	"\t\t3¡¢´«ËÍ·ÇÎÄ±¾ÎÄ¼ş£¬ÀıÈç£º\"sendBFile /home/xieyuooo/aaa.jpg\"\n" +
-	"\t\t4¡¢ÏÂÔØÎÄ¼ş£¬ÀıÈç£º\"getFile aaa.jpg d:/download/\" ÆäÖĞd:/download/ÎªÏÂÔØµ½±¾µØµÄÄ¿Â¼£¬ÈôÎ´Ö¸¶¨£¬ÔòÏÂÔØµ½user.dirÏÂÃæ\n" +
-	"\t\t5¡¢help Êä³öÏà¹ØµÄÊ¹ÓÃ°ïÖú\n" +
-	"\t\t6¡¢exit ÍË³ö¿Í»§¶Ë";
+	public final static String HELP_SHOW = "\n\n\t\tæ“ä½œæ–¹å¼ï¼š\n" +
+	"\t\t1ã€ä¼ é€æ™®é€šçš„å­—ç¬¦ä¸²ï¼Œä¾‹å¦‚ï¼š\"sendMsg ä½ å¥½å•Šï¼\" å³å¯ã€‚\n" +
+	"\t\t2ã€ä¼ é€æ–‡æœ¬æ–‡ä»¶ï¼Œä¾‹å¦‚ï¼š\"sendFile /home/xieyuooo/a.sql charset=utf-8\"\n" +
+	"\t\t3ã€ä¼ é€éæ–‡æœ¬æ–‡ä»¶ï¼Œä¾‹å¦‚ï¼š\"sendBFile /home/xieyuooo/aaa.jpg\"\n" +
+	"\t\t4ã€ä¸‹è½½æ–‡ä»¶ï¼Œä¾‹å¦‚ï¼š\"getFile aaa.jpg d:/download/\" å…¶ä¸­d:/download/ä¸ºä¸‹è½½åˆ°æœ¬åœ°çš„ç›®å½•ï¼Œè‹¥æœªæŒ‡å®šï¼Œåˆ™ä¸‹è½½åˆ°user.dirä¸‹é¢\n" +
+	"\t\t5ã€help è¾“å‡ºç›¸å…³çš„ä½¿ç”¨å¸®åŠ©\n" +
+	"\t\t6ã€exit é€€å‡ºå®¢æˆ·ç«¯";
 	
-	public final static String ERROR_MESSAGE_FORMAT = "´íÎóµÄÏûÏ¢¸ñÊ½£¬Çë²Î¿´ demo£º\n" + HELP_SHOW;
+	public final static String ERROR_MESSAGE_FORMAT = "é”™è¯¯çš„æ¶ˆæ¯æ ¼å¼ï¼Œè¯·å‚çœ‹ demoï¼š\n" + HELP_SHOW;
 	
 	private final static List<CharsetByteRelative> CHASET_BYTE_LIST = Arrays.asList(
 			new CharsetByteRelative("utf8" , (byte)1) , 
@@ -88,7 +88,12 @@ public class Commons {
 	}
 	
 	public static void logInfo(String message) {
-		Class <?>clazz = Reflection.getCallerClass();
+		/**
+		 * 0ï¼šè¿”å›sun.reflect.Reflection
+         * 1: è¿”å›å½“å‰ç±»çš„Classå¯¹è±¡
+         * 2ï¼šè¿”å›è°ƒç”¨è¯¥æ–¹æ³•çš„Classå¯¹è±¡
+		 */
+		Class <?> clazz = Reflection.getCallerClass(2);
 		String date = DATE_FORMAT_OBJECT.format(Calendar.getInstance().getTime());
 		println(date + " [] INFO " + clazz.getName() + " - " + message);
 	}
@@ -99,7 +104,7 @@ public class Commons {
 				closeable.close();
 			}
 		}catch(IOException e) {
-			/*¿ÉÒÔ×Ô¼ºÔö¼ÓÆäËûµÄ´¦Àí*/
+			/*å¯ä»¥è‡ªå·±å¢åŠ å…¶ä»–çš„å¤„ç†*/
 		}
 	}
 	
@@ -117,7 +122,7 @@ public class Commons {
 				return charsetByteRelative.getCharsetByte();
 			}
 		}
-		throw new RuntimeException("²»Ö§³Ö×Ö·û¼¯£º" + charset);
+		throw new RuntimeException("ä¸æ”¯æŒå­—ç¬¦é›†ï¼š" + charset);
 	}
 	
 	public static String getCharsetNameByCode(byte charsetCode) {
@@ -126,7 +131,7 @@ public class Commons {
 				return charsetByteRelative.getCharset();
 			}
 		}
-		throw new RuntimeException("²»Ö§³Ö×Ö·û¼¯±àºÅ£º" + charsetCode);
+		throw new RuntimeException("ä¸æ”¯æŒå­—ç¬¦é›†ç¼–å·ï¼š" + charsetCode);
 	}
 	
 	public static Class<? extends Sendable> findSendableClassByOrder(String order) {
