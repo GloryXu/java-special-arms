@@ -20,7 +20,7 @@ public class NIOServer {
 	
 	public static void main(String []args) throws IOException {
 		Selector selector = createSelector();
-		logInfo("·şÎñÆ÷¶ËÒÑ¾­ÒÑ¾­´ò¿ª¶Ë¿Ú£º" + DEFAULT_PORT);
+		logInfo("æœåŠ¡å™¨ç«¯å·²ç»å·²ç»æ‰“å¼€ç«¯å£ï¼š" + DEFAULT_PORT);
 		try {
 			while (true) {
 				selector.select();
@@ -38,11 +38,11 @@ public class NIOServer {
 	}
 	
 	private static Selector createSelector() throws IOException {
-		ServerSocketChannel server = ServerSocketChannel.open();  //´ò¿ªServerSocketChannel
-		Selector selector = Selector.open();                      //´´½¨Ò»¸öÑ¡ÔñÆ÷
-		server.socket().bind(new InetSocketAddress(DEFAULT_PORT)); //ChannelÖĞ°ó¶¨Ò»¸ö¶Ë¿Ú
-		server.configureBlocking(false);                           //°ó¶¨Îª·Ç×èÈûÄ£Ê½
-		server.register(selector, SelectionKey.OP_ACCEPT);         //Ñ¡ÔñÆ÷×¢²áÔÚChannelÉÏ£¬  ×¢²á½ÓÊÕÊÂ¼ş(ÒòÎª·şÎñÆ÷¶ËÊ×ÏÈÊÇ½ÓÊÕÇëÇó)
+		ServerSocketChannel server = ServerSocketChannel.open();  //æ‰“å¼€ServerSocketChannel
+		Selector selector = Selector.open();                      //åˆ›å»ºä¸€ä¸ªé€‰æ‹©å™¨
+		server.socket().bind(new InetSocketAddress(DEFAULT_PORT)); //Channelä¸­ç»‘å®šä¸€ä¸ªç«¯å£
+		server.configureBlocking(false);                           //ç»‘å®šä¸ºéé˜»å¡æ¨¡å¼
+		server.register(selector, SelectionKey.OP_ACCEPT);         //é€‰æ‹©å™¨æ³¨å†Œåœ¨Channelä¸Šï¼Œ  æ³¨å†Œæ¥æ”¶äº‹ä»¶(å› ä¸ºæœåŠ¡å™¨ç«¯é¦–å…ˆæ˜¯æ¥æ”¶è¯·æ±‚)
 		return selector;
 	}
 }

@@ -24,55 +24,55 @@ public class SelectionKeyProcessor {
 
 	public void processKey() throws IOException {
 		try {
-			if (selectionKey.isAcceptable()) {//½ÓÊÕ
+			if (selectionKey.isAcceptable()) {//æ¥æ”¶
 				processAccept();
-			} else if (selectionKey.isReadable()) {//¶ÁÈ¡
+			} else if (selectionKey.isReadable()) {//è¯»å–
 				processRead();
-			} else if (selectionKey.isWritable()) {//Ğ´
+			} else if (selectionKey.isWritable()) {//å†™
 				processWrite();
 			}
-		}catch(IOException e) {//IOÒì³£ĞèÒª¹Ø±Õ£¬·ñÔò»áµ¼ÖÂÎŞÏŞÖÆµØ±¨´í£¬ÒòÎªÍ¨µÀÃ»½áÊø£¬¾Í»áÒ»Ö±±»¼ì²â
+		}catch(IOException e) {//IOå¼‚å¸¸éœ€è¦å…³é—­ï¼Œå¦åˆ™ä¼šå¯¼è‡´æ— é™åˆ¶åœ°æŠ¥é”™ï¼Œå› ä¸ºé€šé“æ²¡ç»“æŸï¼Œå°±ä¼šä¸€ç›´è¢«æ£€æµ‹
 			SelectableChannel channel = selectionKey.channel();
 			if(channel instanceof SocketChannel) {
 				DownloadFileProcessor downloadFileProcessor = (DownloadFileProcessor)selectionKey.attachment();
 				closeStreams(downloadFileProcessor , channel);
-				logInfo("ÏÂÔØÓÉÓÚIOÒì³££¬½áÊø.....");
+				logInfo("ä¸‹è½½ç”±äºIOå¼‚å¸¸ï¼Œç»“æŸ.....");
 			}
 		}
 	}
 
 	private void processAccept() throws IOException {
-		//System.out.println("Ò»¸öĞÂµÄÁ¬½Ó................");
-		ServerSocketChannel server = (ServerSocketChannel) selectionKey.channel();//ÕâÀï»ñÈ¡µ½Server´ò¿ªµÄÍ¨µÀ
-		SocketChannel channel = server.accept();//½ÓÊÜÒ»¸öÇëÇóµÄChannelµÄÍ¨µÀ
-		channel.configureBlocking(false);//½«½ÓÊÜÇëÇóµÄÍ¨µÀÅäÖÃÎª·Ç×èÈûÄ£Ê½
+		//System.out.println("ä¸€ä¸ªæ–°çš„è¿æ¥................");
+		ServerSocketChannel server = (ServerSocketChannel) selectionKey.channel();//è¿™é‡Œè·å–åˆ°Serveræ‰“å¼€çš„é€šé“
+		SocketChannel channel = server.accept();//æ¥å—ä¸€ä¸ªè¯·æ±‚çš„Channelçš„é€šé“
+		channel.configureBlocking(false);//å°†æ¥å—è¯·æ±‚çš„é€šé“é…ç½®ä¸ºéé˜»å¡æ¨¡å¼
 		//System.out.println(channel.socket().getSendBufferSize());
 		//channel.socket().setSendBufferSize(16 * 1024);
-		channel.register(selector, SelectionKey.OP_READ);//½«Õâ¸öÍ¨µÀ×¢²áÒ»¸ö¶ÁÈ¡ÊÂ¼ş
+		channel.register(selector, SelectionKey.OP_READ);//å°†è¿™ä¸ªé€šé“æ³¨å†Œä¸€ä¸ªè¯»å–äº‹ä»¶
 	}
 
 	private void processRead() throws IOException {
-		SocketChannel channel = (SocketChannel)selectionKey.channel();//´ËÊ±È¡³öµÄÎªprocessAccept()×¢²áÁËµÄÍ¨µÀ
+		SocketChannel channel = (SocketChannel)selectionKey.channel();//æ­¤æ—¶å–å‡ºçš„ä¸ºprocessAccept()æ³¨å†Œäº†çš„é€šé“
 		channel.read(NIOServer.CLIENT_BYTE_BUFFER);
-		//ÒÔÏÂ×ª»»×Ö·û¼¯¹ı³ÌÒ²¿ÉÒÔ×Ô¼ºÊ¹ÓÃ×ª»»Æ÷£ºCharsetDecoderÀ´Íê³É
+		//ä»¥ä¸‹è½¬æ¢å­—ç¬¦é›†è¿‡ç¨‹ä¹Ÿå¯ä»¥è‡ªå·±ä½¿ç”¨è½¬æ¢å™¨ï¼šCharsetDecoderæ¥å®Œæˆ
 		byte[]bytes = new byte[NIOServer.CLIENT_BYTE_BUFFER.position()];
-		NIOServer.CLIENT_BYTE_BUFFER.flip();//½«Ö¸ÕëÖØĞÂÆ«ÒÆ£¬²ÅÄÜµÃµ½×¼È·µÄÊı¾İ
-		NIOServer.CLIENT_BYTE_BUFFER.get(bytes);//¶ÁÈ¡µ½ByteÖĞ
+		NIOServer.CLIENT_BYTE_BUFFER.flip();//å°†æŒ‡é’ˆé‡æ–°åç§»ï¼Œæ‰èƒ½å¾—åˆ°å‡†ç¡®çš„æ•°æ®
+		NIOServer.CLIENT_BYTE_BUFFER.get(bytes);//è¯»å–åˆ°Byteä¸­
 		NIOServer.CLIENT_BYTE_BUFFER.clear();
-		logInfo("¿Í»§¶ËÏûÏ¢ >>" + new String(bytes , DEFAULT_MESSAGE_CHARSET));//×ª»»Êä³ö×Ö·û¼¯
+		logInfo("å®¢æˆ·ç«¯æ¶ˆæ¯ >>" + new String(bytes , DEFAULT_MESSAGE_CHARSET));//è½¬æ¢è¾“å‡ºå­—ç¬¦é›†
 
-		SelectionKey writeSelectionKey = channel.register(selector , SelectionKey.OP_WRITE);//×¢²áÒ»¸öĞ´µÄÑ¡ÔñÆ÷
-		writeSelectionKey.attach(new DownloadFileProcessor());//ÕâÀï¿ÉÒÔ°ó¶¨Ò»¸ö¶ÔÏóµ½selectionKeyµ±ÖĞ£¬´¥·¢ÏàÓ¦ÊÂ¼şµÄÊ±ºò£¬¿ÉÒÔ½«ÆäÈ¡³ö
+		SelectionKey writeSelectionKey = channel.register(selector , SelectionKey.OP_WRITE);//æ³¨å†Œä¸€ä¸ªå†™çš„é€‰æ‹©å™¨
+		writeSelectionKey.attach(new DownloadFileProcessor());//è¿™é‡Œå¯ä»¥ç»‘å®šä¸€ä¸ªå¯¹è±¡åˆ°selectionKeyå½“ä¸­ï¼Œè§¦å‘ç›¸åº”äº‹ä»¶çš„æ—¶å€™ï¼Œå¯ä»¥å°†å…¶å–å‡º
 	}
 
 	private void processWrite() throws IOException {
-		//System.out.println("´¦ÀíĞ´²Ù×÷");
+		//System.out.println("å¤„ç†å†™æ“ä½œ");
 		SocketChannel channel = (SocketChannel)selectionKey.channel();
-		DownloadFileProcessor downloadFileProcessor = (DownloadFileProcessor)selectionKey.attachment();//»ñÈ¡×¢²áWRITEÊÂ¼şµÄ¶ÔÏó
+		DownloadFileProcessor downloadFileProcessor = (DownloadFileProcessor)selectionKey.attachment();//è·å–æ³¨å†ŒWRITEäº‹ä»¶çš„å¯¹è±¡
 		int count = downloadFileProcessor.read();
 		if(count <= 0) {
 			closeStreams(downloadFileProcessor , channel);
-			logInfo("ÏÂÔØ½áÊø.....");
+			logInfo("ä¸‹è½½ç»“æŸ.....");
 		}else {
 			channel.write(downloadFileProcessor.getFileByteBuffer());
 		}

@@ -50,8 +50,8 @@ public class StringTest {
 	}
 	
 	/**
-	 * 该代码仅仅用于测试JDK1.7
-	 * 这里单独用e、f来做的原因是不想和前面的程序已经生成的常量池相互影响
+	 * 璇ヤ唬鐮佷粎浠呯敤浜庢祴璇旿DK1.7
+	 * 杩欓噷鍗曠嫭鐢╡銆乫鏉ュ仛鐨勫師鍥犳槸涓嶆兂鍜屽墠闈㈢殑绋嬪簭宸茬粡鐢熸垚鐨勫父閲忔睜鐩镐簰褰卞搷
 	 */
 	public static void testForJDK17() {
 		String a = "e";
