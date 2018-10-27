@@ -1,0 +1,5 @@
+Java NIO中的几种Channel
+    FileChannel，文件读写的通道，但是它并不支持Selector的非阻塞模式
+    SocketChannel，网络通信中TCP的通道
+    ServerSocketChannel，监听网络中新建的TCP连接，通过它调用accept()可创建SocketChannel与客户端正式连接，就像ServerSocket创建Socket一样
+    DatagramChannel，从UDP中读写网络包数据
