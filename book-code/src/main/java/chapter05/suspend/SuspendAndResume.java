@@ -1,7 +1,7 @@
 package chapter05.suspend;
 
 /**
- * ×¢ÒâÁË£¬ÕâÊÇÒ»¸ö·´Ãæ½Ì²Ä£¬´ó¼Ò¿ÉÒÔ¿´µ½Ïß³ÌÕı³£½áÊø£¬µ«ÊÇËøÃ»ÓĞÊÍ·Åµô
+ * æ³¨æ„äº†ï¼Œè¿™æ˜¯ä¸€ä¸ªåé¢æ•™æï¼Œå¤§å®¶å¯ä»¥çœ‹åˆ°çº¿ç¨‹æ­£å¸¸ç»“æŸï¼Œä½†æ˜¯é”æ²¡æœ‰é‡Šæ”¾æ‰
  * @author xieyuooo
  *
  */
@@ -13,9 +13,9 @@ public class SuspendAndResume {
 		
 		public void run() {
 			synchronized(object) {
-				System.out.println("start...");
+				System.out.println(Thread.currentThread().getName() + " start...");
 				Thread.currentThread().suspend();
-				System.out.println("thread end...");
+				System.out.println(Thread.currentThread().getName() + " thread end...");
 			}
 		}
 	}

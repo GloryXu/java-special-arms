@@ -5,9 +5,9 @@ import java.lang.Thread.UncaughtExceptionHandler;
 class TestExceptionHandler implements UncaughtExceptionHandler {
 	@Override
 	public void uncaughtException(Thread t, Throwable e) {
-		System.out.printf("Ïß³Ì³öÏÖÒì³££º");
+		System.out.printf("çº¿ç¨‹å‡ºç°å¼‚å¸¸ï¼š");
 		e.printStackTrace();
-		System.out.printf("\nµ±Ç°Ïß³ÌÕ»£º");
+		System.out.printf("\nå½“å‰çº¿ç¨‹æ ˆï¼š");
 		new Exception().printStackTrace();
 	}
 }

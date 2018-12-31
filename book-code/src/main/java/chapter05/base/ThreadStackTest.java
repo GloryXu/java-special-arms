@@ -1,7 +1,7 @@
 package chapter05.base;
 
 /**
- * »ñÈ¡Ïß³ÌÕ»ĞÅÏ¢
+ * è·å–çº¿ç¨‹æ ˆä¿¡æ¯
  * @author xieyuooo
  *
  */

@@ -26,6 +26,6 @@ public class ThreadDaemonTest {
 		B b = new B();
 		b.start();
 		Thread.sleep(1000);
-		System.out.println(b.a.getState());//Êä³öRUNNING£¬ËµÃ÷»¹Î´½áÊø
+		System.out.println(b.a.getState());//è¾“å‡ºRUNNINGï¼Œè¯´æ˜è¿˜æœªç»“æŸ
 	}
 } 

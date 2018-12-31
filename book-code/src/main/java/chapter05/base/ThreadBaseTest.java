@@ -7,7 +7,7 @@ public class ThreadBaseTest {
 		new Thread() {
 			public void run() {
 				System.out.println(Thread.currentThread().getName());
-				System.out.println("ÎÒÊÇ±»´´½¨µÄÏß³Ì£¬ÎÒÖ´ĞĞÁË...");
+				System.out.println("æˆ‘æ˜¯è¢«åˆ›å»ºçš„çº¿ç¨‹ï¼Œæˆ‘æ‰§è¡Œäº†...");
 			}
 		}.start();
 		System.out.println(Thread.currentThread().getName());

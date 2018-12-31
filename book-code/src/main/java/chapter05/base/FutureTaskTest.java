@@ -19,13 +19,13 @@ public class FutureTaskTest {
 			this.input = input;
 		}
 		public String call() {
-			try {//ÑÓ³ÙÒ»µãµã
+			try {//å»¶è¿Ÿä¸€ç‚¹ç‚¹
 				Random random = new Random();
 				Thread.sleep((random.nextInt() + this.input.hashCode()) & 10000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			return "ÊäÈë²ÎÊı:" + input;
+			return "è¾“å…¥å‚æ•°:" + input;
 		}
 	}
 
@@ -43,7 +43,7 @@ public class FutureTaskTest {
 			new CallImpl("t3")
 		));*/
 		for(Future<String> future : list) {
-			String result = future.get();//Èç¹ûÃ»·µ»Ø£¬»á×èÈû
+			String result = future.get();//å¦‚æœæ²¡è¿”å›ï¼Œä¼šé˜»å¡
 			System.out.println(result + "\t" + System.currentTimeMillis());
 		}
 		executorService.shutdown();
