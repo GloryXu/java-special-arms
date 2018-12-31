@@ -5,25 +5,25 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicStampedReference;
 
 /**
- * ½â¾öÎÊÌâ£º
- * ½â¾öABAÎÊÌâ£¬Í¨¹ıÒ»¸öÒıÓÃºÍ°æ±¾ºÅÎª»ù´¡½â¾öABAÎÊÌâ£¬
- * µ±Ò»¸ö¶ÔÏó´ÓA±ä³ÉB£¬ÔÙ´ÓB±ä³ÉA£¬´ËÊ±Èô²¢·¢ÖĞ£¬Ä³¸öÏß³Ì·¢ÏÖ¶ÔÏó»¹ÊÇA£¬ÄÇÃ´´ËÊ±¾Í»á¶Ô±È³É¹¦
- * ÎªÁË½â¾öÕâ¸öÎÊÌâ£¬AtomicStampedÊ¹ÓÃÁË°æ±¾ºÅÀ´½â¾öÕâ¸öÎÊÌâ
- * ABAÎÊÌâµÄÄ£ÄâÄã²Î¿´Ä£Äâ´úÂë£º
+ * è§£å†³é—®é¢˜ï¼š
+ * è§£å†³ABAé—®é¢˜ï¼Œé€šè¿‡ä¸€ä¸ªå¼•ç”¨å’Œç‰ˆæœ¬å·ä¸ºåŸºç¡€è§£å†³ABAé—®é¢˜ï¼Œ
+ * å½“ä¸€ä¸ªå¯¹è±¡ä»Aå˜æˆBï¼Œå†ä»Bå˜æˆAï¼Œæ­¤æ—¶è‹¥å¹¶å‘ä¸­ï¼ŒæŸä¸ªçº¿ç¨‹å‘ç°å¯¹è±¡è¿˜æ˜¯Aï¼Œé‚£ä¹ˆæ­¤æ—¶å°±ä¼šå¯¹æ¯”æˆåŠŸ
+ * ä¸ºäº†è§£å†³è¿™ä¸ªé—®é¢˜ï¼ŒAtomicStampedä½¿ç”¨äº†ç‰ˆæœ¬å·æ¥è§£å†³è¿™ä¸ªé—®é¢˜
+ * ABAé—®é¢˜çš„æ¨¡æ‹Ÿä½ å‚çœ‹æ¨¡æ‹Ÿä»£ç ï¼š
  * @author zhongyin.xy
  *
  */
 public class AtomicStampedReferenceTest {
 	
 	/**
-	 * ³£¼ûµÄ·½·¨£º
-	 * @see AtomicStampedReference#compareAndSet(Object, Object, int, int) ¶Ô±ÈĞŞ¸Ä
-	 * @see AtomicStampedReference#attemptStamp(Object, int) ÓÃÓÚ¾ø¶ÔÅĞ¶¨ÊÇ·ñÒ»ÖÂ£¬·µ»Øtrue|false
-	 * @see AtomicStampedReference#getReference() ·µ»ØÒıÓÃ
-	 * @see AtomicStampedReference#getStamp() ·µ»Ø°æ±¾
-	 * @see AtomicStampedReference#get(int[]) ´«ÈëÒ»¸öÊı×é£¬·µ»ØÊı×éµÄ0ºÅÔªËØÎª°æ±¾ºÅ
+	 * å¸¸è§çš„æ–¹æ³•ï¼š
+	 * @see AtomicStampedReference#compareAndSet(Object, Object, int, int) å¯¹æ¯”ä¿®æ”¹
+	 * @see AtomicStampedReference#attemptStamp(Object, int) ç”¨äºç»å¯¹åˆ¤å®šæ˜¯å¦ä¸€è‡´ï¼Œè¿”å›true|false
+	 * @see AtomicStampedReference#getReference() è¿”å›å¼•ç”¨
+	 * @see AtomicStampedReference#getStamp() è¿”å›ç‰ˆæœ¬
+	 * @see AtomicStampedReference#get(int[]) ä¼ å…¥ä¸€ä¸ªæ•°ç»„ï¼Œè¿”å›æ•°ç»„çš„0å·å…ƒç´ ä¸ºç‰ˆæœ¬å·
 	 */
-	public final static AtomicStampedReference <String>ATOMIC_REFERENCE = new AtomicStampedReference<String>("abc" , 0);
+	public final static AtomicStampedReference<String> ATOMIC_REFERENCE = new AtomicStampedReference<String>("abc" , 0);
 	
 	private final static Random RANDOM_OBJECT = new Random();
 
@@ -47,7 +47,7 @@ public class AtomicStampedReferenceTest {
 						e.printStackTrace();
 					}
 					if(ATOMIC_REFERENCE.compareAndSet(oldValue , oldValue + num , stamp , stamp + 1)) {
-						System.out.println("ÎÒÊÇÏß³Ì£º" + num + ",ÎÒ»ñµÃÁËËø½øĞĞÁË¶ÔÏóĞŞ¸Ä£¡");
+						System.out.println("æˆ‘æ˜¯çº¿ç¨‹ï¼š" + num + ",æˆ‘è·å¾—äº†é”è¿›è¡Œäº†å¯¹è±¡ä¿®æ”¹ï¼");
 					}
 				}
 			};
@@ -66,7 +66,7 @@ public class AtomicStampedReferenceTest {
 				while(!ATOMIC_REFERENCE.compareAndSet(ATOMIC_REFERENCE.getReference(), "abc" , stamp , stamp + 1)) {
 					stamp = ATOMIC_REFERENCE.getStamp();
 				}
-				System.out.println("ÒÑ¾­¸ÄÎªÔ­Ê¼Öµ£¡");
+				System.out.println("å·²ç»æ”¹ä¸ºåŸå§‹å€¼ï¼");
 			}
 		}.start();
 	}

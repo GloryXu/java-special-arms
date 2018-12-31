@@ -27,9 +27,9 @@ public class SemaphoreTest {
 					try {
 						MAX_SEMA_PHORE.acquire();
 						acquired = true;
-						System.out.println("ÎÒÊÇÏß³Ì£º" + num + " ÎÒ»ñµÃÁËÊ¹ÓÃÈ¨£¡" + getDateTime());
+						System.out.println("æˆ‘æ˜¯çº¿ç¨‹ï¼š" + num + " æˆ‘è·å¾—äº†ä½¿ç”¨æƒï¼" + getDateTime());
 						Thread.sleep(1000 + (radom.nextInt() & 5000));
-						System.out.println("ÎÒÊÇÏß³Ì£º" + num + " ÎÒÖ´ĞĞÍêÁË£¡" + getDateTime());
+						System.out.println("æˆ‘æ˜¯çº¿ç¨‹ï¼š" + num + " æˆ‘æ‰§è¡Œå®Œäº†ï¼" + getDateTime());
 					} catch (Exception e) {
 						e.printStackTrace();
 					} finally {

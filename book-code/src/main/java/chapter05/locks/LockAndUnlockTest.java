@@ -13,7 +13,7 @@ public class LockAndUnlockTest {
 		public void run() {
 			try {
 				PUBLIC_LOCK.lock();
-				//PUBLIC_LOCK.lock();//如果做两次lock，如果只做一次unlock就会有问题哦
+				//PUBLIC_LOCK.lock();//濡傛灉鍋氫袱娆ock锛屽鏋滃彧鍋氫竴娆nlock灏变細鏈夐棶棰樺摝
 				counter++;
 			}finally {
 				PUBLIC_LOCK.unlock();

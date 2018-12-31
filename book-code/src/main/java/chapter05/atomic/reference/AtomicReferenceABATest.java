@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 public class AtomicReferenceABATest {
 	
-	public final static AtomicReference <String>ATOMIC_REFERENCE = new AtomicReference<String>("abc");
+	public final static AtomicReference<String> ATOMIC_REFERENCE = new AtomicReference<String>("abc");
 	
 	private final static Random RANDOM_OBJECT = new Random();
 

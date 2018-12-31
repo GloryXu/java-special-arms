@@ -23,7 +23,14 @@ public class UnsafeTest {
 	public static void main(String []args) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
 		Unsafe unsafe = getUnsafe();
 		System.out.println("JVM地址宽度：" + unsafe.addressSize());//输出JVM地址宽度
-		
+
+        Field[] fields = UnsafeTest.class.getDeclaredFields();
+        for (Field field : fields) {
+            System.out.print(field + ",");
+        }
+        System.out.println(fields[1]);
+        System.out.println(unsafe.objectFieldOffset(fields[1]));
+
 		Field field1 = UnsafeTest.class.getDeclaredField("longV");
 		Field field2 = UnsafeTest.class.getDeclaredField("intV1");
 		Field field3 = UnsafeTest.class.getDeclaredField("intV2");

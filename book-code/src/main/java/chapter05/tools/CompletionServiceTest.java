@@ -14,7 +14,7 @@ public class CompletionServiceTest {
 	public static void main(String []args) throws InterruptedException, ExecutionException {
 		final Random random = new Random();
 		ExecutorService executorService = Executors.newFixedThreadPool(10);
-		CompletionService<String>completionService = new ExecutorCompletionService<String>(executorService);
+		CompletionService<String> completionService = new ExecutorCompletionService<String>(executorService);
 		for(int i = 0 ; i < 100 ; i++) {
 			final int num = i;
 			completionService.submit(new Callable<String>() {

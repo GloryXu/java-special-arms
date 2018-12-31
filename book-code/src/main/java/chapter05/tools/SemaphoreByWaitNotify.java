@@ -18,15 +18,15 @@ public class SemaphoreByWaitNotify {
 		for (int i = 0; i < THREAD_COUNT; i++) {
 			new Thread(String.valueOf(i)) {
 				 public void run() {
-					tryToLock();//³¢ÊÔ»ñÈ¡µ½Ö´ÐÐÈ¨ÏÞ
-					System.out.println(this.getName() + "======ÎÒ¿ªÊ¼×ö²Ù×÷ÁË£¡");
+					tryToLock();//å°è¯•èŽ·å–åˆ°æ‰§è¡Œæƒé™
+					System.out.println(this.getName() + "======æˆ‘å¼€å§‹åšæ“ä½œäº†ï¼");
 					try {
 						Thread.sleep(100 + (radom.nextInt() & 3000));
 					}catch(InterruptedException e) {
 						e.printStackTrace();
 					}
-					System.out.println(this.getName() + "======²Ù×÷½áÊøÁË£¡");
-					tryToUnLock();//ÊÍ·ÅËø
+					System.out.println(this.getName() + "======æ“ä½œç»“æŸäº†ï¼");
+					tryToUnLock();//é‡Šæ”¾é”
 				}
 			}.start();
 		}
@@ -44,9 +44,9 @@ public class SemaphoreByWaitNotify {
 		int nowValue = NOW_CALL_COUNT.get(); 
 		while(true) {
 			if(nowValue < QUERY_MAX_LENGTH && NOW_CALL_COUNT.compareAndSet(nowValue, nowValue + 1)) {  
-                break;//»ñÈ¡µ½ÁË  
+                break;//èŽ·å–åˆ°äº†  
             }
-			if(tryTimes % 3 == 0) {//³¢ÊÔ3´ÎÈô²»³É¹¦ÔòÐÝÃß
+			if(tryTimes % 3 == 0) {//å°è¯•3æ¬¡è‹¥ä¸æˆåŠŸåˆ™ä¼‘çœ 
 				waitForObjectNotify();
 			}
 			nowValue = NOW_CALL_COUNT.get();
@@ -57,7 +57,7 @@ public class SemaphoreByWaitNotify {
 	private static void waitForObjectNotify() {
 		synchronized(LOCK_OBJECT) {
 			try {
-				LOCK_OBJECT.wait(500);//×î¶àµÈ´ý500msºóÖØÊÔ
+				LOCK_OBJECT.wait(500);//æœ€å¤šç­‰å¾…500msåŽé‡è¯•
 			}catch(InterruptedException e) {
 				e.printStackTrace();
 			}
