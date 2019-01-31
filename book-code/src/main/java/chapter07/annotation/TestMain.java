@@ -14,13 +14,13 @@ public class TestMain {
 				new HashMap<String , String>() {
 					{
 						put("name" , "xieyuooo");
-						put("title" , "Ğ¡ÅÖ");
+						put("title" , "å°èƒ–");
 					}
 				},
 				new HashMap<String , String>() {
 					{
 						put("name" , "ffff");
-						put("title" , "±êÌâ2");
+						put("title" , "æ ‡é¢˜2");
 					}
 				}
 		);
@@ -29,6 +29,6 @@ public class TestMain {
 			users.add(ConvertionService.convertMapToBean(row, UserDO.class));
 		}
 		System.out.println();
-		//ÕâÀï´ó¼Ò¿ÉÒÔ½«usersµÄÁĞ±í½øĞĞÊä³ö
+		//è¿™é‡Œå¤§å®¶å¯ä»¥å°†usersçš„åˆ—è¡¨è¿›è¡Œè¾“å‡º
 	}
 }

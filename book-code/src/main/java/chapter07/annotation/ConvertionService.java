@@ -19,7 +19,7 @@ public class ConvertionService {
         while(clazzTemp != Object.class) {
         	Field []fields = clazzTemp.getDeclaredFields();
         	for(Field field : fields) {
-        		if(!fieldNames.contains(field.getName())) {//Í¬ÃûÊôĞÔ×ÓÀà¸²¸Ç
+        		if(!fieldNames.contains(field.getName())) {//åŒåå±æ€§å­ç±»è¦†ç›–
         			fieldList.add(field);
         			fieldNames.add(field.getName());
         		}
@@ -41,7 +41,7 @@ public class ConvertionService {
 				}
 				Column columnAnnotation = field.getAnnotation(Column.class);
 				if(columnAnnotation != null) {
-					String value = row.get(columnAnnotation.name());//Í¨¹ıannotation×¢½âµÄÃû³ÆÀ´»ñÈ¡¶ÔÓ¦µÄÖµ
+					String value = row.get(columnAnnotation.name());//é€šè¿‡annotationæ³¨è§£çš„åç§°æ¥è·å–å¯¹åº”çš„å€¼
 					Class <?>fieldType = field.getType();
 					if(fieldType == String.class) {
 						field.set(object, value);
@@ -54,10 +54,10 @@ public class ConvertionService {
 					}else if(fieldType == long.class) {
 						field.setLong(object , getLong(value));
 					}/*
-						¼ÌĞøµÄÊı¾İÀàĞÍ´ó¼Ò¿ÉÒÔ×Ô¼º²¹³ä
+						ç»§ç»­çš„æ•°æ®ç±»å‹å¤§å®¶å¯ä»¥è‡ªå·±è¡¥å……
 					*/
 				}else {
-					/*Ã»ÓĞannotationµÄ´úÂë½»¸ø´ó¼Ò×Ô¼ºÈ¥Íê³ÉÁË*/
+					/*æ²¡æœ‰annotationçš„ä»£ç äº¤ç»™å¤§å®¶è‡ªå·±å»å®Œæˆäº†*/
 				}
 			}
 		}
